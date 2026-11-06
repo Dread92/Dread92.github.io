@@ -3,183 +3,134 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Guillaume Blanc, support engineering and automation</title>
-<meta name="description" content="Technical support engineer who builds the tooling: a deterministic Zendesk auto-reply service with nine guardrails, an agent workspace integrated into an internal dashboard, a suite of audit scanners, and Heimdall, a live air-raid tracker for Kyiv.">
+<title>Guillaume Blanc</title>
+<meta name="description" content="Guillaume Blanc, support engineer in Kyiv. The tooling behind a high-volume support team: a deterministic auto-reply service with nine guardrails, an agent workspace, a scanner suite, and Heimdall, a live air-raid tracker.">
+<meta property="og:title" content="Guillaume Blanc">
+<meta property="og:description" content="Guillaume Blanc, support engineer in Kyiv. The tooling behind a high-volume support team: a deterministic auto-reply service with nine guardrails, an agent workspace, a scanner suite, and Heimdall, a live air-raid tracker.">
+<meta property="og:url" content="https://dread92.github.io/">
+<link rel="canonical" href="https://dread92.github.io/">
+<link rel="alternate" hreflang="en" href="https://dread92.github.io/"><link rel="alternate" hreflang="fr" href="https://dread92.github.io/fr/"><link rel="alternate" hreflang="uk" href="https://dread92.github.io/uk/"><link rel="alternate" hreflang="x-default" href="https://dread92.github.io/">
 <link rel="icon" href="heimdall-mark.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --ink: #16202a;
-    --ink-2: #3d4a57;
-    --ink-3: #6b7784;
-    --line: #d9dee4;
-    --surface: #f2f4f6;
-    --card: #ffffff;
-    --blue: #1f5fbf;
-    --blue-soft: #e3ecfa;
-    --amber: #b8730a;
-    --amber-soft: #fbf0d9;
-    --red: #b3261e;
-    --red-soft: #f9e3e1;
-    --green: #1f7a4d;
-    --green-soft: #ddf1e6;
-    --radius: 6px;
-    --max: 1120px;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-      --ink: #e8ecf0; --ink-2: #b6bfc9; --ink-3: #8390a0; --line: #2b3542;
-      --surface: #11171e; --card: #19212a;
-      --blue: #7aa7ee; --blue-soft: #1c2b44; --amber: #e0a23a; --amber-soft: #3a2b10;
-      --red: #ef8b84; --red-soft: #42201d; --green: #6fcf97; --green-soft: #15311f;
-    }
-  }
-  :root[data-theme="dark"] {
-    --ink: #e8ecf0; --ink-2: #b6bfc9; --ink-3: #8390a0; --line: #2b3542;
-    --surface: #11171e; --card: #19212a;
-    --blue: #7aa7ee; --blue-soft: #1c2b44; --amber: #e0a23a; --amber-soft: #3a2b10;
-    --red: #ef8b84; --red-soft: #42201d; --green: #6fcf97; --green-soft: #15311f;
-  }
-
-  * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
-  body {
-    margin: 0; background: var(--surface); color: var(--ink);
-    font-family: "Inter Tight", system-ui, sans-serif; font-size: 17px; line-height: 1.55;
-    -webkit-font-smoothing: antialiased;
-  }
-  a { color: var(--blue); text-decoration-thickness: 1px; text-underline-offset: 3px; }
-  a:focus-visible, button:focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
-  code, .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; font-size: 0.86em; }
-  h1, h2, h3 { margin: 0; letter-spacing: -0.01em; line-height: 1.15; }
-  h1 { font-size: clamp(2rem, 5vw, 3.3rem); font-weight: 700; letter-spacing: -0.025em; }
-  h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 650; }
-  h3 { font-size: 1.15rem; font-weight: 600; }
-  p { margin: 0 0 1em; max-width: 68ch; }
-  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 16px; }
-
-  /* Header */
-  header.top { border-bottom: 1px solid var(--line); background: var(--card); position: sticky; top: 0; z-index: 10; }
-  header.top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 56px; }
-  .brand { font-weight: 650; text-decoration: none; color: var(--ink); }
-  nav.sections { display: flex; gap: 18px; overflow-x: auto; scrollbar-width: none; }
-  nav.sections a { color: var(--ink-2); text-decoration: none; white-space: nowrap; font-size: 0.95rem; padding: 6px 0; border-bottom: 2px solid transparent; }
-  nav.sections a:hover, nav.sections a[aria-current] { color: var(--ink); border-bottom-color: var(--blue); }
-
-  /* Hero */
-  .hero { padding: 56px 0 40px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: center; }
-  .hero .lede { font-size: 1.2rem; color: var(--ink-2); max-width: 46ch; }
-  .hero .links { display: flex; flex-wrap: wrap; gap: 10px 18px; margin-top: 18px; font-size: 0.95rem; }
-  .btn { display: inline-block; background: var(--ink); color: var(--surface); padding: 10px 16px; border-radius: var(--radius); text-decoration: none; font-weight: 600; }
-  .btn:hover { opacity: 0.9; }
-  .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 28px; }
-  .fact { border-left: 3px solid var(--blue); padding: 2px 0 2px 12px; }
-  .fact b { display: block; font-size: 1.35rem; font-weight: 700; letter-spacing: -0.02em; }
-  .fact span { color: var(--ink-3); font-size: 0.9rem; }
-  figure { margin: 0; }
-  figcaption { color: var(--ink-3); font-size: 0.85rem; margin-top: 8px; }
-  svg.diagram { width: 100%; height: auto; display: block; }
-  svg.diagram text { font-family: "Inter Tight", system-ui, sans-serif; font-size: 13px; fill: var(--ink); }
-  svg.diagram .small { font-size: 11px; fill: var(--ink-3); }
-  svg.diagram .mono { font-family: "IBM Plex Mono", monospace; font-size: 11.5px; }
-  svg.diagram .box { fill: var(--card); stroke: var(--line); stroke-width: 1.2; }
-  svg.diagram .box.blue { fill: var(--blue-soft); stroke: var(--blue); }
-  svg.diagram .box.amber { fill: var(--amber-soft); stroke: var(--amber); }
-  svg.diagram .box.red { fill: var(--red-soft); stroke: var(--red); }
-  svg.diagram .box.green { fill: var(--green-soft); stroke: var(--green); }
-  svg.diagram .edge { fill: none; stroke: var(--ink-3); stroke-width: 1.4; }
-  svg.diagram .edge.strong { stroke: var(--ink); stroke-width: 1.8; }
-  svg.diagram .arrow { fill: var(--ink-3); }
-
-  /* Sections */
-  section.block { padding: 48px 0; border-top: 1px solid var(--line); }
-  .block-head { display: grid; grid-template-columns: 1fr 1.2fr; gap: 32px; margin-bottom: 28px; }
-  .block-head .meta { color: var(--ink-3); font-size: 0.9rem; margin-top: 10px; }
-  .block-head .meta span + span::before { content: " / "; color: var(--line); margin: 0 6px; }
-  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px; }
-  .guardrails { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; counter-reset: g; }
-  .guardrails li { display: grid; grid-template-columns: 36px 1fr; gap: 10px; align-items: baseline; }
-  .guardrails li::before { counter-increment: g; content: "G" counter(g); font-family: "IBM Plex Mono", monospace; font-size: 0.8rem; color: var(--amber); font-weight: 500; }
-  .guardrails b { font-weight: 600; }
-  .log { background: var(--ink); color: #d7dee6; border-radius: var(--radius); padding: 16px 18px; font-family: "IBM Plex Mono", monospace; font-size: 0.82rem; line-height: 1.6; overflow-x: auto; }
-  :root[data-theme="dark"] .log, html:not([data-theme="light"]) .log { background: #0c1117; }
-  @media (prefers-color-scheme: light) { html:not([data-theme="dark"]) .log { background: #16202a; } }
-  .log .k { color: #9fc5ff; } .log .ok { color: #8fe0b0; } .log .warn { color: #f0c36c; } .log .dim { color: #7f8b98; }
-
-  .tools { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
-  .tool { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px; display: grid; gap: 8px; }
-  .tool h3 { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
-  .tool h3 small { color: var(--ink-3); font-weight: 400; font-size: 0.8rem; white-space: nowrap; }
-  .tool p { margin: 0; font-size: 0.95rem; color: var(--ink-2); }
-  .tool .tags { color: var(--ink-3); font-size: 0.8rem; }
-  .tool.wide { grid-column: 1 / -1; }
-
-  .heimdall-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
-  .heimdall-mark { width: 72px; height: 72px; border-radius: 14px; }
-  .checks { margin: 0; padding-left: 1.1em; }
-  .checks li { margin-bottom: 6px; }
-  .notice { background: var(--amber-soft); border-left: 3px solid var(--amber); padding: 10px 14px; border-radius: 0 var(--radius) var(--radius) 0; font-size: 0.92rem; }
-  .notice p { margin: 0; }
-
-  .about { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; }
-  .timeline { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--line); }
-  .timeline li { padding: 0 0 14px 16px; position: relative; }
-  .timeline li::before { content: ""; position: absolute; left: -7px; top: 7px; width: 10px; height: 10px; border-radius: 50%; background: var(--card); border: 2px solid var(--blue); }
-  .timeline b { display: block; }
-  .timeline span { color: var(--ink-3); font-size: 0.9rem; }
-  footer { border-top: 1px solid var(--line); padding: 28px 0 40px; color: var(--ink-3); font-size: 0.9rem; }
-  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; }
-
-  @media (max-width: 860px) {
-    .hero, .block-head, .two, .heimdall-grid, .about { grid-template-columns: 1fr; }
-    .hero { padding-top: 36px; gap: 28px; }
-    .facts { grid-template-columns: 1fr 1fr; }
-    .tools { grid-template-columns: 1fr; }
-  }
-  @media (max-width: 480px) { .facts { grid-template-columns: 1fr; } }
+  :root { --bg:#ffffff; --bg-2:#f5f5f7; --ink:#1d1d1f; --ink-2:#424245; --ink-3:#6e6e73; --line:#d2d2d7; --accent:#0071e3; --amber:#b25000; --amber-soft:#fff4e5; --green:#1d7a46; --green-soft:#e8f5ec; --blue-soft:#eaf3ff; --red:#c0392b; --red-soft:#fdecea; --r:18px; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#000; --bg-2:#1d1d1f; --ink:#f5f5f7; --ink-2:#d2d2d7; --ink-3:#a1a1a6; --line:#3a3a3c; --accent:#2997ff; --amber:#ffb340; --amber-soft:#2a1d08; --green:#4cd964; --green-soft:#0f2a17; --blue-soft:#0d2440; --red:#ff6961; --red-soft:#3a1210; } }
+  :root[data-theme="dark"] { --bg:#000; --bg-2:#1d1d1f; --ink:#f5f5f7; --ink-2:#d2d2d7; --ink-3:#a1a1a6; --line:#3a3a3c; --accent:#2997ff; --amber:#ffb340; --amber-soft:#2a1d08; --green:#4cd964; --green-soft:#0f2a17; --blue-soft:#0d2440; --red:#ff6961; --red-soft:#3a1210; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:17px; line-height:1.5; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+  h1,h2,h3 { margin:0; line-height:1.1; letter-spacing:-0.02em; }
+  h1 { font-size:clamp(2.2rem,5.6vw,3.9rem); font-weight:600; letter-spacing:-0.03em; }
+  h2 { font-size:clamp(1.8rem,4vw,2.7rem); font-weight:600; letter-spacing:-0.025em; }
+  h3 { font-size:1.2rem; font-weight:600; }
+  p { margin:0 0 1em; }
+  .wrap { max-width:980px; margin:0 auto; padding:0 22px; }
+  .narrow { max-width:680px; margin-left:auto; margin-right:auto; }
+  .lede { font-size:clamp(1.12rem,2vw,1.4rem); color:var(--ink-2); line-height:1.4; letter-spacing:-0.015em; }
+  .muted { color:var(--ink-3); } .center { text-align:center; }
+  .kicker { color:var(--accent); font-weight:600; font-size:0.95rem; margin-bottom:10px; }
+  .nav { position:sticky; top:0; z-index:20; backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); background:color-mix(in srgb,var(--bg) 72%,transparent); border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent); }
+  .nav .wrap { height:48px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .nav .brand { color:var(--ink); font-weight:600; font-size:0.95rem; white-space:nowrap; }
+  .nav ul { list-style:none; margin:0; padding:0; display:flex; gap:20px; overflow-x:auto; scrollbar-width:none; }
+  .nav ul a { color:var(--ink-2); font-size:0.82rem; white-space:nowrap; }
+  .nav ul a[aria-current] { color:var(--ink); }
+  .langs { display:flex; gap:6px; font-size:0.78rem; white-space:nowrap; }
+  .langs a { color:var(--ink-3); padding:3px 8px; border-radius:980px; }
+  .langs a[aria-current] { background:var(--ink); color:var(--bg); }
+  .hero { padding:92px 0 64px; text-align:center; }
+  .hero .lede { max-width:660px; margin:22px auto 0; }
+  .cta { display:flex; justify-content:center; gap:14px 26px; flex-wrap:wrap; margin-top:30px; align-items:center; }
+  .pill { display:inline-block; background:var(--accent); color:#fff; padding:11px 22px; border-radius:980px; font-weight:500; font-size:0.98rem; }
+  .pill:hover { text-decoration:none; filter:brightness(1.08); }
+  .textlink { font-size:0.98rem; } .textlink::after { content:" \203A"; }
+  .hero figure { margin:56px auto 0; max-width:760px; }
+  figure { margin:0; } figcaption { color:var(--ink-3); font-size:0.85rem; margin-top:12px; }
+  svg.diagram { width:100%; height:auto; display:block; }
+  svg.diagram text { font-family:-apple-system,BlinkMacSystemFont,"Inter",sans-serif; font-size:13px; fill:var(--ink); }
+  svg.diagram .small { font-size:11px; fill:var(--ink-3); }
+  svg.diagram .mono { font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:11px; }
+  svg.diagram .box { fill:var(--bg); stroke:var(--line); stroke-width:1.2; }
+  svg.diagram .box.blue { fill:var(--blue-soft); stroke:var(--accent); }
+  svg.diagram .box.amber { fill:var(--amber-soft); stroke:var(--amber); }
+  svg.diagram .box.red { fill:var(--red-soft); stroke:var(--red); }
+  svg.diagram .box.green { fill:var(--green-soft); stroke:var(--green); }
+  svg.diagram .edge { fill:none; stroke:var(--ink-3); stroke-width:1.4; }
+  svg.diagram .edge.strong { stroke:var(--ink-2); stroke-width:1.8; }
+  svg.diagram .arrow { fill:var(--ink-3); }
+  section { padding:88px 0; } section.alt { background:var(--bg-2); }
+  .sec-head { text-align:center; max-width:760px; margin:0 auto 48px; }
+  .sec-head p { margin-top:18px; font-size:1.1rem; color:var(--ink-2); }
+  .meta { color:var(--ink-3); font-size:0.85rem; margin-top:14px; } .meta span + span::before { content:"  \00b7  "; }
+  .panel { border-radius:var(--r); padding:32px; }
+  section.alt .panel { background:var(--bg); box-shadow:0 1px 2px rgba(0,0,0,0.04),0 8px 30px rgba(0,0,0,0.06); }
+  section:not(.alt) .panel { background:var(--bg-2); }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
+  .guardrails { list-style:none; margin:18px 0 0; padding:0; display:grid; gap:14px; counter-reset:g; }
+  .guardrails li { display:grid; grid-template-columns:28px 1fr; gap:10px; align-items:baseline; font-size:0.95rem; color:var(--ink-2); }
+  .guardrails li::before { counter-increment:g; content:counter(g); font-weight:600; color:var(--ink-3); font-variant-numeric:tabular-nums; }
+  .guardrails b { color:var(--ink); font-weight:600; }
+  .log { background:#1d1d1f; color:#e5e5ea; border-radius:14px; padding:18px 20px; font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:0.8rem; line-height:1.65; overflow-x:auto; }
+  .log .k { color:#64b5ff; } .log .ok { color:#4cd964; } .log .warn { color:#ffb340; } .log .dim { color:#8e8e93; }
+  .tools { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+  .tool { background:var(--bg); border-radius:var(--r); padding:26px; display:grid; gap:10px; align-content:start; }
+  .tool.wide { grid-column:1 / -1; }
+  .tool h3 small { display:block; color:var(--ink-3); font-weight:400; font-size:0.8rem; margin-top:4px; }
+  .tool p { margin:0; font-size:0.95rem; color:var(--ink-2); } .tool .tags { color:var(--ink-3); font-size:0.8rem; }
+  .quote { max-width:760px; margin:0 auto; text-align:center; }
+  .quote blockquote { margin:0; font-size:clamp(1.2rem,2.3vw,1.6rem); line-height:1.35; font-weight:500; letter-spacing:-0.02em; }
+  .quote cite { display:block; font-style:normal; color:var(--ink-3); margin-top:22px; font-size:0.95rem; }
+  .letter { display:grid; grid-template-columns:1fr 1.2fr; gap:36px; align-items:center; margin-top:44px; }
+  .letter img { width:100%; height:auto; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,0.12); border:1px solid var(--line); }
+  .letter .more { font-size:1rem; color:var(--ink-2); }
+  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; max-width:760px; margin:0 auto 40px; }
+  .stat { background:var(--bg); border-radius:14px; padding:18px 20px; text-align:center; }
+  section:not(.alt) .stat { background:var(--bg-2); }
+  .stat b { display:block; font-size:2rem; font-weight:600; letter-spacing:-0.03em; }
+  .stat span { color:var(--ink-3); font-size:0.85rem; }
+  .stats-note { color:var(--ink-3); font-size:0.82rem; text-align:center; max-width:640px; margin:-26px auto 40px; }
+  .checks { margin:0; padding:0; list-style:none; display:grid; gap:12px; }
+  .checks li { padding-left:24px; position:relative; color:var(--ink-2); font-size:0.97rem; }
+  .checks li::before { content:""; position:absolute; left:0; top:0.55em; width:8px; height:8px; border-radius:50%; background:var(--accent); }
+  .checks b { color:var(--ink); }
+  .heimdall-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:40px; align-items:start; }
+  .mark { width:64px; height:64px; border-radius:16px; display:block; margin:0 auto 18px; }
+  .kyiv p { font-size:1.1rem; color:var(--ink-2); }
+  .kyiv .pull { font-size:clamp(1.3rem,2.6vw,1.85rem); font-weight:500; letter-spacing:-0.02em; color:var(--ink); line-height:1.3; margin:0 0 28px; }
+  .about { display:grid; grid-template-columns:1.2fr 1fr; gap:48px; }
+  .about p { font-size:1.06rem; color:var(--ink-2); }
+  .timeline { list-style:none; margin:0; padding:0; }
+  .timeline li { padding:14px 0; border-top:1px solid var(--line); } .timeline li:first-child { border-top:0; padding-top:0; }
+  .timeline b { display:block; font-weight:600; } .timeline span { color:var(--ink-3); font-size:0.9rem; }
+  footer { padding:36px 0 48px; color:var(--ink-3); font-size:0.82rem; border-top:1px solid var(--line); }
+  footer .wrap { display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between; } footer a { color:var(--ink-3); }
+  @media (max-width:820px) { .nav ul { display:none; } .two,.tools,.letter,.heimdall-grid,.about { grid-template-columns:1fr; } .stats { grid-template-columns:1fr; } section { padding:64px 0; } .hero { padding:60px 0 44px; } .panel { padding:22px; } .nav .wrap { gap:10px; } }
 </style>
 </head>
 <body>
-
-<header class="top">
+<nav class="nav" aria-label="Sections">
   <div class="wrap">
     <a class="brand" href="#top">Guillaume Blanc</a>
-    <nav class="sections" aria-label="Sections">
-      <a href="#autoreply">Auto-reply service</a>
-      <a href="#desk">Support Desk</a>
-      <a href="#scanners">Scanner suite</a>
-      <a href="#heimdall">Heimdall</a>
-      <a href="#about">About</a>
-    </nav>
+    <ul><li><a href="#autoreply">Auto-reply service</a></li><li><a href="#desk">Support Desk</a></li><li><a href="#scanners">Scanner suite</a></li><li><a href="#recommendation">Recommendation</a></li><li><a href="#heimdall">Heimdall</a></li><li><a href="#kyiv">Kyiv</a></li><li><a href="#about">About</a></li></ul>
+    <div class="langs"><a href="" aria-current="true">EN</a><a href="fr/">FR</a><a href="uk/">UK</a></div>
   </div>
-</header>
-
-<main id="top" class="wrap">
-
-  <section class="hero">
-    <div>
-      <h1>Support engineer. I build the tooling the support team runs on.</h1>
-      <p class="lede">Two years on a high-volume Zendesk queue for a mobile rewards platform, and most of the automation around it: a bot that replaced a paid Zapier workflow, an agent workspace built into the company dashboard, audit scanners, and an on-premise vision prototype. Off the clock, a live air-raid tracker used in Kyiv every night.</p>
-      <div class="links">
-        <a class="btn" href="Guillaume_Blanc_CV.pdf">Download the CV (PDF)</a>
-        <a href="https://www.linkedin.com/in/guillaume-blanc-820bb528a">LinkedIn</a>
-        <a href="https://github.com/Dread92">GitHub</a>
-        <a href="mailto:guillaume.blanc92@hotmail.fr">guillaume.blanc92@hotmail.fr</a>
-      </div>
-      <div class="facts" aria-label="Key facts">
-        <div class="fact"><b>1,037</b><span>tickets handled by the auto-reply service since 1 Sept 2026, zero rollbacks</span></div>
-        <div class="fact"><b>11 tools</b><span>in the support suite, about 12,000 lines of JavaScript, all in daily use</span></div>
-        <div class="fact"><b>19 oblasts</b><span>covered by Heimdall, live at heimdall.com.ua</span></div>
-      </div>
+</nav>
+<main id="top">
+  <section class="hero"><div class="wrap">
+    <h1>Support engineer.<br>I build the tooling the support team runs on.</h1>
+    <p class="lede">Two years on a high-volume Zendesk queue for a mobile rewards platform, and most of the automation around it: a bot that replaced a paid Zapier workflow, an agent workspace built into the company dashboard, audit scanners, and an on-premise vision prototype. Off the clock, a live air-raid tracker that people in Kyiv open every night.</p>
+    <div class="cta">
+      <a class="pill" href="Guillaume_Blanc_CV.pdf">Download the CV</a>
+      <a class="textlink" href="https://www.linkedin.com/in/guillaume-blanc-820bb528a">LinkedIn</a>
+      <a class="textlink" href="https://github.com/Dread92">GitHub</a>
+      <a class="textlink" href="mailto:guillaume.blanc92@hotmail.fr">Email</a>
     </div>
-
-    <figure>
-      <!-- Hero diagram: one ticket through the auto-reply service -->
-      <svg class="diagram" viewBox="0 0 560 420" role="img" aria-labelledby="hero-t">
+    <figure><svg class="diagram" viewBox="0 0 560 420" role="img" aria-labelledby="hero-t">
         <title id="hero-t">How a new ticket flows through the auto-reply service</title>
         <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
 
@@ -232,39 +183,14 @@
         <text x="471" y="51" text-anchor="middle" class="small">every pass looks for the</text>
         <text x="471" y="64" text-anchor="middle" class="small">signature of the August</text>
         <text x="471" y="77" text-anchor="middle" class="small">incident and alerts</text>
-      </svg>
-      <figcaption>One ticket through the auto-reply service. Every box on the amber path exists because of a real incident.</figcaption>
-    </figure>
-  </section>
+      </svg><figcaption>One ticket through the auto-reply service. Every box on the amber path exists because of a real incident.</figcaption></figure>
+  </div></section>
 
-  <!-- AUTO-REPLY -->
-  <section class="block" id="autoreply">
-    <div class="block-head">
-      <div>
-        <h2>Zendesk auto-reply service, a Zapier replacement that cannot go rogue</h2>
-        <div class="meta"><span>Node.js 18, no dependencies</span><span>Zendesk REST API</span><span>Sept 2026 to present</span></div>
-      </div>
-      <p>The team paid for a Zapier workflow that auto-answered simple tickets. In August 2026 it misfired and mass-tagged accounts as fraud. I rebuilt it as a single Node.js service with one design rule: nothing punitive happens without a positive signal from the backend, and every write can be undone with one command. It runs in shadow mode first, then live with a volume ramp. Since 1 September it has handled 1,037 tickets with no incident and no rollback.</p>
-    </div>
-
+  <section class="alt" id="autoreply"><div class="wrap">
+    <div class="sec-head"><div class="kicker">Auto-reply service</div><h2>A Zapier replacement that cannot go rogue.</h2><p>The team paid for a Zapier workflow that auto-answered simple tickets. In August 2026 it misfired and mass-tagged accounts as fraud. I rebuilt it as a single Node.js service with one design rule: nothing punitive happens without a positive signal from the backend, and every write can be undone with one command. It runs in shadow mode first, then live with a volume ramp. Since 1 September it has handled 1,037 tickets with no incident and no rollback.</p><div class="meta"><span>Node.js 18, no dependencies</span><span>Zendesk REST API</span><span>September 2026 to present</span></div></div>
     <div class="two">
-      <div class="card">
-        <h3>The nine guardrails</h3>
-        <ol class="guardrails" style="margin-top:12px">
-          <li><span><b>No trust in labels.</b> A ticket's type, priority or tag is never enough for a punitive action. Fraud needs a positive backend signal, and the check fails closed.</span></li>
-          <li><span><b>Circuit breaker.</b> Hard caps per hour, per day and for fraud. Tripping one pauses all writes and fires an alert; resuming is a deliberate human command.</span></li>
-          <li><span><b>Kill switch.</b> A file named <code>STOP</code> next to the script stops every write.</span></li>
-          <li><span><b>Backlog protection.</b> Tickets older than a set age are never touched, so a fresh start cannot blast the backlog.</span></li>
-          <li><span><b>Scoped view.</b> The service only sees new, unanswered tickets, and marks every one it examines so nothing is looked at twice.</span></li>
-          <li><span><b>Journal and rollback.</b> Each action carries a run tag and is appended to a journal. <code>--rollback &lt;runtag&gt;</code> undoes a whole run, with an optional apology.</span></li>
-          <li><span><b>Canary.</b> Every pass checks for the exact signature of the August bug and alerts if it reappears.</span></li>
-          <li><span><b>Shadow first.</b> Live mode is explicit, and the number of actions per pass ramps up over days.</span></li>
-          <li><span><b>Nothing gets stuck.</b> Held tickets the service does not solve are released to agents, and a Zendesk automation releases them anyway if the service is down.</span></li>
-        </ol>
-      </div>
-      <div>
-        <div class="log" aria-label="Example of the service's journal">
-<span class="dim"># one pass, shadow mode, trimmed</span>
+      <div class="panel"><h3>Nine guardrails</h3><ol class="guardrails"><li><span><b>No trust in labels.</b> A ticket's type, priority or tag is never enough for a punitive action. Fraud needs a positive backend signal, and the check fails closed.</span></li><li><span><b>Circuit breaker.</b> Hard caps per hour, per day and for fraud. Tripping one pauses all writes and fires an alert; resuming is a deliberate human command.</span></li><li><span><b>Kill switch.</b> A file named STOP next to the script stops every write.</span></li><li><span><b>Backlog protection.</b> Tickets older than a set age are never touched, so a fresh start cannot blast the backlog.</span></li><li><span><b>Scoped view.</b> The service only sees new, unanswered tickets, and marks every one it examines so nothing is looked at twice.</span></li><li><span><b>Journal and rollback.</b> Each action carries a run tag and is appended to a journal. One command undoes a whole run, with an optional apology.</span></li><li><span><b>Canary.</b> Every pass checks for the exact signature of the August bug and alerts if it reappears.</span></li><li><span><b>Shadow first.</b> Live mode is explicit, and the number of actions per pass ramps up over days.</span></li><li><span><b>Nothing gets stuck.</b> Held tickets the service does not solve are released to agents, and a Zendesk automation releases them anyway if the service is down.</span></li></ol></div>
+      <div><div class="log"><span class="dim"># one pass, shadow mode, trimmed</span>
 <span class="k">pass</span>  view=auto-reply-candidates  found=6  age_ok=6
 <span class="k">#8231xx</span> cat=no_message   <span class="ok">reply+solve</span>  run=gl_run_20260901
 <span class="k">#8231xx</span> cat=fraud        backend=blocked reasons=2  <span class="ok">reply+solve</span>
@@ -272,25 +198,13 @@
 <span class="k">#8231xx</span> cat=none         <span class="dim">release to agents</span>
 <span class="k">breaker</span> hour=3/12  day=9/60  fraud=1/20  <span class="ok">ok</span>
 <span class="k">canary</span> incidents_born_last_2h=0  <span class="ok">ok</span>
-<span class="dim">journal: actions.jsonl +2</span>
-        </div>
-        <p style="margin-top:16px; font-size:0.95rem; color:var(--ink-2)">Also in the folder: a dry-run auditor that applies the same classifier to the whole backlog without writing anything, a resumable backfill executor, and a one-off stale-ticket follow-up. Same rules, same journal, same rollback.</p>
-      </div>
+<span class="dim">journal: actions.jsonl +2</span></div><p class="muted" style="margin-top:16px;font-size:0.95rem">Also in the folder: a dry-run auditor that applies the same classifier to the whole backlog without writing anything, a resumable backfill executor, and a one-off stale-ticket follow-up. Same rules, same journal, same rollback.</p></div>
     </div>
-  </section>
+  </div></section>
 
-  <!-- SUPPORT DESK -->
-  <section class="block" id="desk">
-    <div class="block-head">
-      <div>
-        <h2>Support Desk, an agent workspace inside the company dashboard</h2>
-        <div class="meta"><span>Userscript, 4,500 lines</span><span>Zendesk OAuth per agent</span><span>Adopted by engineering, Oct 2026</span></div>
-      </div>
-      <p>Agents used to switch between Zendesk and the internal user dashboard for every ticket: read the message in one, check the account in the other, go back to reply. Support Desk puts the whole loop on one screen of the internal dashboard: the queue, the ticket thread with screenshots, the user profile with linked accounts and fraud reasons, the actions (add coins, verify, payouts), the reply box with macros, and weekly stats. Each agent connects with their own Zendesk login, so every action stays attributable. The engineering team later integrated the design natively into the dashboard.</p>
-    </div>
-
-    <figure>
-      <svg class="diagram" viewBox="0 0 1000 300" role="img" aria-labelledby="desk-t">
+  <section id="desk"><div class="wrap">
+    <div class="sec-head"><div class="kicker">Support Desk</div><h2>An agent workspace inside the company dashboard.</h2><p>Agents used to switch between Zendesk and the internal user dashboard for every ticket. Support Desk puts the whole loop on one screen: the queue, the ticket thread with screenshots, the user profile with linked accounts and fraud reasons, the actions, the reply box with macros, and weekly stats. Each agent connects with their own Zendesk login, so every action stays attributable. The engineering team later integrated the design natively into the dashboard.</p><div class="meta"><span>Userscript, 4,500 lines</span><span>Zendesk OAuth per agent</span><span>Adopted by engineering, October 2026</span></div></div>
+    <div class="panel"><svg class="diagram" viewBox="0 0 1000 300" role="img" aria-labelledby="desk-t">
         <title id="desk-t">Support Desk architecture: one screen in front of two systems</title>
         <rect x="330" y="20" width="340" height="260" rx="8" class="box blue"/>
         <text x="500" y="46" text-anchor="middle" style="font-weight:600">Support Desk (one screen)</text>
@@ -316,23 +230,12 @@
         <text x="850" y="160" text-anchor="middle" class="small">coins, verification, payout status</text>
         <text x="850" y="178" text-anchor="middle" class="small">session shared from the dashboard</text>
         <path d="M670 145 H740" class="edge strong" marker-end="url(#ah)" marker-start="url(#ah)"/>
-      </svg>
-      <figcaption>Two systems, one screen. The agent never leaves the dashboard; the userscript talks to both APIs on their behalf.</figcaption>
-    </figure>
-  </section>
+      </svg><figcaption class="center">Two systems, one screen. The agent never leaves the dashboard; the script talks to both APIs on their behalf.</figcaption></div>
+  </div></section>
 
-  <!-- SCANNERS -->
-  <section class="block" id="scanners">
-    <div class="block-head">
-      <div>
-        <h2>Scanner suite: find the pattern before it becomes a ticket spike</h2>
-        <div class="meta"><span>Userscripts on Zendesk and the dashboard</span><span>Zendesk Search API, backend batch endpoints</span><span>Local vision model (Ollama)</span></div>
-      </div>
-      <p>Support data is full of patterns nobody has time to look for: the same payout provider failing in one country, a game generating tickets far above its install base, forty people thanking us for a fix we already sent. Each scanner pulls a slice of tickets, enriches it with backend data, and shows a list the agent can act on in bulk. Nothing is sent without a review and a confirmation click, and every bulk action re-checks the ticket's status right before writing.</p>
-    </div>
-
-    <figure style="margin-bottom:24px">
-      <svg class="diagram" viewBox="0 0 1000 170" role="img" aria-labelledby="scan-t">
+  <section class="alt" id="scanners"><div class="wrap">
+    <div class="sec-head"><div class="kicker">Scanner suite</div><h2>Find the pattern before it becomes a ticket spike.</h2><p>Support data is full of patterns nobody has time to look for: a payout provider failing in one country, a game generating tickets far above its install base, forty people thanking us for a fix we already sent. Each scanner pulls a slice of tickets, enriches it with backend data, and shows a list the agent can act on in bulk. Nothing is sent without a review and a confirmation, and every bulk action re-checks the ticket right before writing.</p></div>
+    <div class="panel" style="margin-bottom:18px"><svg class="diagram" viewBox="0 0 1000 170" role="img" aria-labelledby="scan-t">
         <title id="scan-t">How every scanner works: pull, enrich, classify, review, act</title>
         <rect x="20" y="50" width="150" height="64" rx="6" class="box"/>
         <text x="95" y="76" text-anchor="middle">Pull tickets</text>
@@ -354,76 +257,25 @@
         <text x="903" y="76" text-anchor="middle">Act in bulk</text>
         <text x="903" y="94" text-anchor="middle" class="small">confirm, re-verify, then write</text>
         <text x="500" y="145" text-anchor="middle" class="small">Optional pass: a local vision model reads ticket screenshots on the agent's own machine. No user data leaves the PC.</text>
-      </svg>
-    </figure>
+      </svg></div>
+    <div class="tools"><div class="tool wide"><h3>Support Suite: payout, fraud, coins<small>4,700 lines</small></h3><p>Six scanners in one panel. Payout rows carry the amount, the provider, the gift-card supplier, blocked and multi-account flags, and the corridor status from the failure feed. The fraud tab groups 75 block reasons by family and ships a bot-bannable preset. Coins classifies purchase versus level claims from every customer reply, not just the first. A thank-you detector closes tickets whose last message is only gratitude, in any language, with a question guard. Cross-tab de-duplication and a merge button for multi-ticket senders.</p><div class="tags">Zendesk API, backend batch endpoints, multilingual text rules, bulk macros with confirmation</div></div><div class="tool"><h3>Global Health Scanner<small>Vision edition</small></h3><p>A four-tab report on the whole queue: overview, payouts by provider and country, most-problematic games (tickets against installs), issue hotspots by level. A local vision model on my own GPU reads the screenshots and feeds evidence-based counts next to the install-based proxy. Live view while the scan runs, CSV export for everything.</p><div class="tags">Ollama, qwen3-vl, self-contained HTML report, day-over-day snapshots</div></div><div class="tool"><h3>Auto-Processor<small>Rule framework</small></h3><p>Standalone handler for clearly resolvable categories, drip-fed at a random 15 to 60 second interval so it behaves like a person. Dry-run by default. Re-verifies each ticket right before sending: still open, nobody replied since the scan. Every send is assigned to the agent and tagged.</p><div class="tags">macro plus a personalised line, rate limiting, tagging for audit</div></div><div class="tool"><h3>Payout Recovery</h3><p>Proactive recovery of non-fraud blocked payouts: temporarily unavailable corridors with a provider-recovery heuristic and batch re-send to the same address, an invalid-email fix queue with a one-click fix, and a surface-only view for the rest. Fraud statuses are never fetched. Every batch is approved by a person.</p><div class="tags">payout failure feed, batch overview, same-address safety rule</div></div><div class="tool"><h3>Support Monitor<small>Static dashboard</small></h3><p>A dashboard for management: tickets per day and first-reply time, this week against last; solved tickets per agent with the bot and the fraud flow as their own rows; the open backlog by assignee and by waiting time. A scheduled job pulls Zendesk every two hours and publishes only aggregated numbers to a static page. No server, no personal data.</p><div class="tags">scheduled export, static hosting, aggregated data only</div></div><div class="tool"><h3>FAQ Scanner</h3><p>Finds unsolved tickets that match simple FAQ topics and applies the team's existing macro in bulk, after the agent reviews the list.</p><div class="tags">topic rules, bulk macro, review before send</div></div><div class="tool"><h3>Social Media Review</h3><p>A keyboard-driven carousel for the screenshot review queue: one post at a time, approve, reject or skip with the arrow keys, per-user grouping, next-image preload. Every decision is a keypress; nothing is bulk-decided.</p><div class="tags">signed image URLs, keyboard UX, error fallback</div></div><div class="tool"><h3>Support Tool, Unified Dock, installer</h3><p>A productivity widget for the ticket view (account lookup from the requester or sender address, one-button iOS liveness verification behind a double confirm), a dock that collapses every tool into one icon and auto-discovers new ones, and a three-click Windows installer with automatic updates. New agents were set up in under five minutes.</p><div class="tags">cross-origin session bridge, plugin discovery, onboarding</div></div></div>
+    <p class="muted center" style="margin:28px auto 0;font-size:0.9rem;max-width:680px">These tools were built for my employer and run on their internal systems, so the code is not public. What is shown here is the design, the safety rules and the scale. I am happy to walk through any of them in a call.</p>
+  </div></section>
 
-    <div class="tools">
-      <div class="tool wide">
-        <h3>Support Suite: payout, fraud, coins <small>4,700 lines</small></h3>
-        <p>Six scanners in one panel. Payout rows carry the amount, the provider, the gift-card supplier, blocked and multi-account flags, and the corridor status from the failure feed. The fraud tab groups 75 block reasons by family and ships a bot-bannable preset. Coins classifies purchase versus level claims from every customer reply, not just the first. A thank-you detector closes tickets whose last message is only gratitude, in any language, with a question guard. Cross-tab de-duplication and a merge button for multi-ticket senders.</p>
-        <div class="tags">Zendesk API, backend batch endpoints, multilingual text rules, bulk macros with confirmation</div>
-      </div>
-      <div class="tool">
-        <h3>Global Health Scanner <small>vision edition</small></h3>
-        <p>A four-tab HTML report on the whole queue: overview, payouts by provider and country, most-problematic games (tickets against installs), issue hotspots by level. A local vision model on my own GPU reads the screenshots and feeds evidence-based counts next to the install-based proxy. Live view refreshes every 4 seconds while the scan runs; CSV export for everything.</p>
-        <div class="tags">Ollama, qwen3-vl, self-contained HTML, day-over-day snapshots</div>
-      </div>
-      <div class="tool">
-        <h3>Auto-Processor <small>rule framework</small></h3>
-        <p>Standalone handler for clearly resolvable categories, drip-fed at a random 15 to 60 second interval so it looks and behaves like a person. Dry-run by default. Re-verifies each ticket right before sending: still open, nobody replied since the scan. Every send is assigned to the agent and tagged.</p>
-        <div class="tags">macros plus a personalised line, rate limiting, tagging for audit</div>
-      </div>
-      <div class="tool">
-        <h3>Payout Recovery</h3>
-        <p>Proactive recovery of non-fraud blocked payouts: temporarily unavailable corridors with a provider-recovery heuristic and batch re-send to the same address, an invalid-email fix queue with a one-click fix, and a surface-only view for the rest. Fraud statuses are never fetched. Every batch is approved by a person.</p>
-        <div class="tags">payout failure feed, batch overview, same-address safety rule</div>
-      </div>
-      <div class="tool">
-        <h3>FAQ Scanner</h3>
-        <p>Finds unsolved tickets that match simple FAQ topics (verification, referrals, new phone, missing games) and applies the team's existing macro in bulk, after the agent reviews the list.</p>
-        <div class="tags">topic rules, bulk macro, review before send</div>
-      </div>
-      <div class="tool">
-        <h3>Social Media Review</h3>
-        <p>A keyboard-driven carousel for the screenshot review queue: one post at a time, large image, approve, reject or skip with the arrow keys, per-user grouping, next-image preload. Every decision is a keypress; nothing is bulk-decided.</p>
-        <div class="tags">signed image URLs, keyboard UX, error fallback</div>
-      </div>
-      <div class="tool">
-        <h3>Support Tool and Unified Dock</h3>
-        <p>A productivity widget for the ticket view (account lookup from the requester or sender address, one-button iOS liveness verification behind a double confirm) and a dock that collapses every tool's launcher into one icon, auto-discovering new tools by a data attribute.</p>
-        <div class="tags">cross-origin session bridge, plugin discovery</div>
-      </div>
-      <div class="tool">
-        <h3>Support Monitor <small>static dashboard</small></h3>
-        <p>A public-facing dashboard for management: tickets per day and first-reply time, this week against last week; solved tickets and reply time per agent, with the auto-reply bot and the fraud flow as their own rows; the open backlog by assignee and by waiting time. A scheduled job pulls Zendesk every two hours and publishes only aggregated numbers to a static page, so there is no server to maintain and no personal data on it. Access is gated by a key in the link.</p>
-        <div class="tags">scheduled export, static hosting on GitLab Pages, aggregated data only</div>
-      </div>
-      <div class="tool">
-        <h3>Three-click installer</h3>
-        <p>A Windows batch file that checks for the userscript manager, opens the right settings page, installs the script from a hosted URL and lands the agent on the dashboard. Updates ship automatically through the script's update URL. New agents were set up in under five minutes.</p>
-        <div class="tags">onboarding, auto-update</div>
-      </div>
+  <section id="recommendation"><div class="wrap">
+    <div class="quote"><div class="kicker" style="margin-bottom:18px">From my manager at Gamelight</div><blockquote>"He independently developed several internal tools that became part of the team's daily operations. He remained dependable and effective under pressure, including during critical incidents, and consistently showed initiative in identifying opportunities to improve existing processes."</blockquote><cite>Georgiana Fotache, Team Lead Operations, Gamelight GmbH. Signed letter, 6 November 2026.</cite></div>
+    <div class="letter">
+      <a href="Gamelight_Recommendation_Letter.pdf"><img src="letter.png" alt="First page of the signed recommendation letter from Gamelight" width="620" height="877" loading="lazy"></a>
+      <div class="more"><p>The letter covers the two years in full: a high-volume multilingual queue with payment, payout, fraud and verification work; the tools that replaced a third-party subscription and caught product issues early; the agent workspace whose design the engineering team adopted; and the operational scope I took over after the team lead left, including Zendesk administration, payout approvals and reporting.</p><p>It also states plainly that the end of the collaboration comes from an internal restructuring of support operations, and is unrelated to the quality of the work.</p><p><a class="textlink" href="Gamelight_Recommendation_Letter.pdf">Read the signed letter (PDF)</a></p></div>
     </div>
+  </div></section>
 
-    <div class="notice" style="margin-top:20px">
-      <p>These tools were built for my employer and run on their internal systems, so the code is not public. What is shown here is the design, the safety rules and the scale. I am happy to walk through any of them in a call.</p>
-    </div>
-  </section>
-
-  <!-- HEIMDALL -->
-  <section class="block" id="heimdall">
-    <div class="block-head">
-      <div>
-        <img class="heimdall-mark" src="heimdall-mark.png" alt="" width="72" height="72">
-        <h2 style="margin-top:14px">Heimdall, a live air-raid and drone tracker for Kyiv</h2>
-        <div class="meta"><span>Python, standard library only</span><span>Open source, MIT</span><span>Live at heimdall.com.ua</span></div>
-      </div>
-      <p>Built with a friend for the people around us. A single Python service reads the official alert data raion by raion and two dozen public Telegram channels, parses the Ukrainian and Russian text with written rules, and shows what was reported: a tactical map with the evidence behind every mark, and a light page for one place and what is within 30 km. Pushes wake the phone with the app closed. Three languages. It is explicitly not a warning system, and the code follows safety rules written down before the first line.</p>
-    </div>
-
+  <section class="alt" id="heimdall"><div class="wrap">
+    <div class="sec-head"><img class="mark" src="heimdall-mark.png" alt="" width="64" height="64"><div class="kicker">Heimdall</div><h2>A live air-raid and drone tracker for Kyiv.</h2><p>I designed and built Heimdall alone, for the people around me, and released it as open source. A single Python service reads the official alert data district by district and two dozen public Telegram channels, parses the Ukrainian and Russian text with written rules, and shows what was reported: a tactical map with the evidence behind every mark, and a light page for one place and what is within 30 km. Push notifications wake the phone with the app closed. Three languages, nineteen regions. It is explicitly not a warning system, and the code follows safety rules written down before the first line.</p><div class="meta"><span>Python, standard library only</span><span>MIT licence</span><span>Live at heimdall.com.ua</span></div></div>
+    <div class="stats"><div class="stat"><b>3,531</b><span>device-days in the last 30 days</span></div><div class="stat"><b>4,809</b><span>app opens in the last 30 days</span></div><div class="stat"><b>96</b><span>devices on a typical day</span></div></div>
+    <p class="stats-note">Counted without tracking anyone: the daily device hash is regenerated at midnight, so the same person cannot be recognised tomorrow. Figures from the built-in usage dashboard, 6 November 2026.</p>
     <div class="heimdall-grid">
-      <figure>
-        <svg class="diagram" viewBox="0 0 520 330" role="img" aria-labelledby="hm-t">
+      <div class="panel"><svg class="diagram" viewBox="0 0 520 330" role="img" aria-labelledby="hm-t">
           <title id="hm-t">Heimdall data flow</title>
           <rect x="20" y="20" width="150" height="52" rx="6" class="box"/>
           <text x="95" y="42" text-anchor="middle">Official alerts</text>
@@ -462,69 +314,30 @@
           <text x="98" y="294" text-anchor="middle" class="small">a thousand phones in seconds,</text>
           <text x="98" y="308" text-anchor="middle" class="small">over kept-open connections</text>
           <path d="M300 224 H230 V279 H186" class="edge" marker-end="url(#ah)"/>
-        </svg>
-        <figcaption>From a public post to a mark on the map, with the sentence it came from one tap away.</figcaption>
-      </figure>
-      <div>
-        <ul class="checks">
-          <li><b>Evidence, not guesses.</b> Every marker opens the sentence it came from, the channel, the time and the confidence. No extrapolated trajectory unless you switch it on, no invented ETA.</li>
-          <li><b>Stale is never shown as active.</b> A target with no new report turns grey at 5 minutes and disappears at 15.</li>
-          <li><b>Preventive warnings.</b> Fighter take-offs and ballistic threats raise a banner before anything is seen, and drop it the moment a later post lifts it.</li>
-          <li><b>Replay and history.</b> Any of the last seven nights played back like a weather radar; explosions and shoot-downs over 72 hours.</li>
-          <li><b>Operations from the dashboard.</b> Add or mute a channel without a deploy, new channels start on trial, admin messages to every reader in three languages.</li>
-          <li><b>Runs anywhere.</b> Standard library only, one Dockerfile, deploys to Fly.io, demo mode with fake alerts for development.</li>
-        </ul>
-        <p style="margin-top:16px"><a href="https://github.com/Dread92/Heimdall-map">Source on GitHub</a> &nbsp;&nbsp; <a href="https://heimdall.com.ua/m">Live tactical map</a> &nbsp;&nbsp; <a href="https://heimdall.com.ua/guide">What to do (guide)</a></p>
+        </svg><figcaption>From a public post to a mark on the map, with the sentence it came from one tap away.</figcaption></div>
+      <div><ul class="checks"><li><b>Evidence, not guesses.</b> Every marker opens the sentence it came from, the channel, the time and the confidence. No extrapolated trajectory unless you switch it on, no invented ETA.</li><li><b>Stale is never shown as active.</b> A target with no new report turns grey at 5 minutes and disappears at 15.</li><li><b>Preventive warnings.</b> Fighter take-offs and ballistic threats raise a banner before anything is seen, and drop it the moment a later post lifts it.</li><li><b>Replay and history.</b> Any of the last seven nights played back like a weather radar; explosions and shoot-downs over 72 hours.</li><li><b>Operations from the dashboard.</b> Add or mute a channel without a deploy, new channels start on trial, admin messages to every reader in three languages.</li><li><b>Runs anywhere.</b> Standard library only, one Dockerfile, deploys to Fly.io, demo mode with fake alerts for development.</li></ul>
+        <p style="margin-top:22px"><a class="textlink" href="https://github.com/Dread92/Heimdall-map">Source on GitHub</a><br><a class="textlink" href="https://heimdall.com.ua/m">Live tactical map</a><br><a class="textlink" href="https://heimdall.com.ua/guide">What to do, the guide</a></p>
       </div>
     </div>
-  </section>
+  </div></section>
 
-  <!-- ABOUT -->
-  <section class="block" id="about">
-    <div class="about">
-      <div>
-        <h2>About</h2>
-        <p style="margin-top:14px">I am French, based in Kyiv, and I have spent ten years fixing things for people: PCs and small business networks first, then two years of L2 support on a mobile rewards platform where I ended up building most of the team's tooling. Before IT, three years in the French Gendarmerie as a field responder, which is where I learned to stay calm and procedural when it matters.</p>
-        <p>I like problems where the fix is a tool the team keeps using, and I distrust automation that cannot be rolled back. I work in English and French, and I am open to remote roles in technical support, support engineering, support operations and automation.</p>
-        <p><a class="btn" href="Guillaume_Blanc_CV.pdf">Download the CV (PDF)</a></p>
-      </div>
-      <ul class="timeline">
-        <li><b>Technical Support Specialist and Workflow Automation, Gamelight</b><span>Sept 2024 to Dec 2026, remote. Took over the team lead's operational scope in Aug 2026.</span></li>
-        <li><b>Heimdall, co-author</b><span>2026, open source, in daily use in Kyiv.</span></li>
-        <li><b>Project lead developer, FUSA</b><span>2022 to present. NGO supporting Ukrainian defenders.</span></li>
-        <li><b>Computer technician, LDLC</b><span>2019 to 2022, Lyon. Custom builds, diagnostics, remote support.</span></li>
-        <li><b>Gendarme, Gendarmerie nationale</b><span>2015 to 2018. Field intervention, APJA qualification.</span></li>
-        <li><b>Web Developer and Integrator, OpenClassrooms</b><span>2023. State-registered certification, RNCP level 5.</span></li>
-      </ul>
-    </div>
-  </section>
+  <section id="kyiv"><div class="wrap narrow kyiv">
+    <div class="kicker" style="margin-bottom:14px">Working from Kyiv</div>
+    <p class="pull">Everything on this page was built in Kyiv, during the war.</p>
+    <p>I have lived here since before the full-scale invasion, and I stayed. Since February 2022 the city has lived with air-raid alerts, most often at night, sometimes several in a row, and with winters of scheduled and unscheduled power cuts when the energy grid is hit. A working day here is planned around things most teams never think about: where the nearest shelter is, how long the laptop battery lasts, which hours the power is likely to be on, and whether tonight's alert is the kind you can sleep through or the kind you cannot.</p><p>That is the context behind two things on this page. The first is reliability as a habit: when your own electricity, internet and sleep are not guaranteed, you learn to build systems that fail safely, keep a journal, and can be rolled back by someone else if you are not there. The guardrails in the auto-reply service were not an abstract exercise. The second is Heimdall. It exists because my family and my neighbours needed a clearer picture of what was actually reported over the city, and because the only honest way to build it was to show the evidence behind every mark and never pretend to know more than the sources do.</p><p>Alongside my job, I have been the lead developer for FUSA, an NGO supporting Ukrainian defenders, since 2022, and I take part in a volunteer platform in the Kyiv region that has run humanitarian logistics since 2014. None of this is a hardship story. It is the environment I work in, and it has made me better at the job.</p>
+  </div></section>
 
+  <section class="alt" id="about"><div class="wrap about">
+    <div><h2>About</h2><p style="margin-top:16px">I am French, based in Kyiv, and I have spent ten years fixing things for people: PCs and small business networks first, then two years of L2 support on a mobile rewards platform where I ended up building most of the team's tooling. Before IT, three years in the French Gendarmerie as a field responder, which is where I learned to stay calm and procedural when it matters.</p><p>I like problems where the fix is a tool the team keeps using, and I distrust automation that cannot be rolled back. I work in English and French, and I am open to remote roles in technical support, support engineering, support operations and automation.</p><p style="margin-top:22px"><a class="pill" href="Guillaume_Blanc_CV.pdf">Download the CV</a></p></div>
+    <ul class="timeline"><li><b>Technical Support Specialist and Workflow Automation, Gamelight</b><span>September 2024 to December 2026, remote. Took over the team lead's operational scope in August 2026.</span></li><li><b>Heimdall, creator</b><span>2026, open source, in daily use in Kyiv.</span></li><li><b>Project lead developer, FUSA</b><span>2022 to present. NGO supporting Ukrainian defenders.</span></li><li><b>Computer technician, LDLC</b><span>2019 to 2022, Lyon. Custom builds, diagnostics, remote support.</span></li><li><b>Gendarme, Gendarmerie nationale</b><span>2015 to 2018. Field intervention, APJA qualification.</span></li><li><b>Web Developer and Integrator, OpenClassrooms</b><span>2023. State-registered certification, RNCP level 5.</span></li></ul>
+  </div></section>
 </main>
-
-<footer>
-  <div class="wrap">
-    <span>Guillaume Blanc, Kyiv. Last updated November 2026.</span>
-    <span><a href="mailto:guillaume.blanc92@hotmail.fr">guillaume.blanc92@hotmail.fr</a> &nbsp; <a href="https://github.com/Dread92">github.com/Dread92</a></span>
-  </div>
-</footer>
-
+<footer><div class="wrap">
+  <span>Guillaume Blanc, Kyiv. Updated November 2026.</span>
+  <span><a href="mailto:guillaume.blanc92@hotmail.fr">guillaume.blanc92@hotmail.fr</a> &nbsp;&nbsp; <a href="https://github.com/Dread92">github.com/Dread92</a> &nbsp;&nbsp; <a href="https://www.linkedin.com/in/guillaume-blanc-820bb528a">LinkedIn</a></span>
+</div></footer>
 <script>
-  // Highlight the section in view in the top nav.
-  (function () {
-    var links = document.querySelectorAll('nav.sections a');
-    var map = {};
-    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
-    if (!('IntersectionObserver' in window)) return;
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (e) {
-        if (e.isIntersecting) {
-          links.forEach(function (a) { a.removeAttribute('aria-current'); });
-          var a = map[e.target.id]; if (a) a.setAttribute('aria-current', 'true');
-        }
-      });
-    }, { rootMargin: '-40% 0px -55% 0px' });
-    Object.keys(map).forEach(function (id) { var el = document.getElementById(id); if (el) io.observe(el); });
-  })();
+(function(){var links=document.querySelectorAll('.nav ul a');var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});if(!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.removeAttribute('aria-current');});var a=map[e.target.id];if(a)a.setAttribute('aria-current','true');}});},{rootMargin:'-40% 0px -55% 0px'});Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});})();
 </script>
 </body>
 </html>
