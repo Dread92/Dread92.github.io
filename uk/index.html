@@ -1,0 +1,343 @@
+<!doctype html>
+<html lang="uk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Гійом Блан</title>
+<meta name="description" content="Гійом Блан, інженер підтримки в Києві. Інструменти за спиною команди підтримки з великим потоком звернень: детермінований сервіс автовідповідей з дев'ятьма запобіжниками, робоче місце агента, набір сканерів і Heimdall, трекер повітряних тривог у реальному часі.">
+<meta property="og:title" content="Гійом Блан">
+<meta property="og:description" content="Гійом Блан, інженер підтримки в Києві. Інструменти за спиною команди підтримки з великим потоком звернень: детермінований сервіс автовідповідей з дев'ятьма запобіжниками, робоче місце агента, набір сканерів і Heimdall, трекер повітряних тривог у реальному часі.">
+<meta property="og:url" content="https://dread92.github.io/uk/">
+<link rel="canonical" href="https://dread92.github.io/uk/">
+<link rel="alternate" hreflang="en" href="https://dread92.github.io/"><link rel="alternate" hreflang="fr" href="https://dread92.github.io/fr/"><link rel="alternate" hreflang="uk" href="https://dread92.github.io/uk/"><link rel="alternate" hreflang="x-default" href="https://dread92.github.io/">
+<link rel="icon" href="../heimdall-mark.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg:#ffffff; --bg-2:#f5f5f7; --ink:#1d1d1f; --ink-2:#424245; --ink-3:#6e6e73; --line:#d2d2d7; --accent:#0071e3; --amber:#b25000; --amber-soft:#fff4e5; --green:#1d7a46; --green-soft:#e8f5ec; --blue-soft:#eaf3ff; --red:#c0392b; --red-soft:#fdecea; --r:18px; }
+  @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) { --bg:#000; --bg-2:#1d1d1f; --ink:#f5f5f7; --ink-2:#d2d2d7; --ink-3:#a1a1a6; --line:#3a3a3c; --accent:#2997ff; --amber:#ffb340; --amber-soft:#2a1d08; --green:#4cd964; --green-soft:#0f2a17; --blue-soft:#0d2440; --red:#ff6961; --red-soft:#3a1210; } }
+  :root[data-theme="dark"] { --bg:#000; --bg-2:#1d1d1f; --ink:#f5f5f7; --ink-2:#d2d2d7; --ink-3:#a1a1a6; --line:#3a3a3c; --accent:#2997ff; --amber:#ffb340; --amber-soft:#2a1d08; --green:#4cd964; --green-soft:#0f2a17; --blue-soft:#0d2440; --red:#ff6961; --red-soft:#3a1210; }
+  * { box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior:auto; } }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Inter","Helvetica Neue",Helvetica,Arial,sans-serif; font-size:17px; line-height:1.5; -webkit-font-smoothing:antialiased; letter-spacing:-0.01em; }
+  a { color:var(--accent); text-decoration:none; }
+  a:hover { text-decoration:underline; }
+  a:focus-visible { outline:2px solid var(--accent); outline-offset:3px; border-radius:4px; }
+  h1,h2,h3 { margin:0; line-height:1.1; letter-spacing:-0.02em; }
+  h1 { font-size:clamp(2.2rem,5.6vw,3.9rem); font-weight:600; letter-spacing:-0.03em; }
+  h2 { font-size:clamp(1.8rem,4vw,2.7rem); font-weight:600; letter-spacing:-0.025em; }
+  h3 { font-size:1.2rem; font-weight:600; }
+  p { margin:0 0 1em; }
+  .wrap { max-width:980px; margin:0 auto; padding:0 22px; }
+  .narrow { max-width:680px; margin-left:auto; margin-right:auto; }
+  .lede { font-size:clamp(1.12rem,2vw,1.4rem); color:var(--ink-2); line-height:1.4; letter-spacing:-0.015em; }
+  .muted { color:var(--ink-3); } .center { text-align:center; }
+  .kicker { color:var(--accent); font-weight:600; font-size:0.95rem; margin-bottom:10px; }
+  .nav { position:sticky; top:0; z-index:20; backdrop-filter:saturate(180%) blur(20px); -webkit-backdrop-filter:saturate(180%) blur(20px); background:color-mix(in srgb,var(--bg) 72%,transparent); border-bottom:1px solid color-mix(in srgb,var(--line) 60%,transparent); }
+  .nav .wrap { height:48px; display:flex; align-items:center; justify-content:space-between; gap:16px; }
+  .nav .brand { color:var(--ink); font-weight:600; font-size:0.95rem; white-space:nowrap; }
+  .nav ul { list-style:none; margin:0; padding:0; display:flex; gap:20px; overflow-x:auto; scrollbar-width:none; }
+  .nav ul a { color:var(--ink-2); font-size:0.82rem; white-space:nowrap; }
+  .nav ul a[aria-current] { color:var(--ink); }
+  .langs { display:flex; gap:6px; font-size:0.78rem; white-space:nowrap; }
+  .langs a { color:var(--ink-3); padding:3px 8px; border-radius:980px; }
+  .langs a[aria-current] { background:var(--ink); color:var(--bg); }
+  .hero { padding:92px 0 64px; text-align:center; }
+  .hero .lede { max-width:660px; margin:22px auto 0; }
+  .cta { display:flex; justify-content:center; gap:14px 26px; flex-wrap:wrap; margin-top:30px; align-items:center; }
+  .pill { display:inline-block; background:var(--accent); color:#fff; padding:11px 22px; border-radius:980px; font-weight:500; font-size:0.98rem; }
+  .pill:hover { text-decoration:none; filter:brightness(1.08); }
+  .textlink { font-size:0.98rem; } .textlink::after { content:" \203A"; }
+  .hero figure { margin:56px auto 0; max-width:760px; }
+  figure { margin:0; } figcaption { color:var(--ink-3); font-size:0.85rem; margin-top:12px; }
+  svg.diagram { width:100%; height:auto; display:block; }
+  svg.diagram text { font-family:-apple-system,BlinkMacSystemFont,"Inter",sans-serif; font-size:13px; fill:var(--ink); }
+  svg.diagram .small { font-size:11px; fill:var(--ink-3); }
+  svg.diagram .mono { font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:11px; }
+  svg.diagram .box { fill:var(--bg); stroke:var(--line); stroke-width:1.2; }
+  svg.diagram .box.blue { fill:var(--blue-soft); stroke:var(--accent); }
+  svg.diagram .box.amber { fill:var(--amber-soft); stroke:var(--amber); }
+  svg.diagram .box.red { fill:var(--red-soft); stroke:var(--red); }
+  svg.diagram .box.green { fill:var(--green-soft); stroke:var(--green); }
+  svg.diagram .edge { fill:none; stroke:var(--ink-3); stroke-width:1.4; }
+  svg.diagram .edge.strong { stroke:var(--ink-2); stroke-width:1.8; }
+  svg.diagram .arrow { fill:var(--ink-3); }
+  section { padding:88px 0; } section.alt { background:var(--bg-2); }
+  .sec-head { text-align:center; max-width:760px; margin:0 auto 48px; }
+  .sec-head p { margin-top:18px; font-size:1.1rem; color:var(--ink-2); }
+  .meta { color:var(--ink-3); font-size:0.85rem; margin-top:14px; } .meta span + span::before { content:"  \00b7  "; }
+  .panel { border-radius:var(--r); padding:32px; }
+  section.alt .panel { background:var(--bg); box-shadow:0 1px 2px rgba(0,0,0,0.04),0 8px 30px rgba(0,0,0,0.06); }
+  section:not(.alt) .panel { background:var(--bg-2); }
+  .two { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
+  .guardrails { list-style:none; margin:18px 0 0; padding:0; display:grid; gap:14px; counter-reset:g; }
+  .guardrails li { display:grid; grid-template-columns:28px 1fr; gap:10px; align-items:baseline; font-size:0.95rem; color:var(--ink-2); }
+  .guardrails li::before { counter-increment:g; content:counter(g); font-weight:600; color:var(--ink-3); font-variant-numeric:tabular-nums; }
+  .guardrails b { color:var(--ink); font-weight:600; }
+  .log { background:#1d1d1f; color:#e5e5ea; border-radius:14px; padding:18px 20px; font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:0.8rem; line-height:1.65; overflow-x:auto; }
+  .log .k { color:#64b5ff; } .log .ok { color:#4cd964; } .log .warn { color:#ffb340; } .log .dim { color:#8e8e93; }
+  .tools { display:grid; grid-template-columns:repeat(2,1fr); gap:18px; }
+  .tool { background:var(--bg); border-radius:var(--r); padding:26px; display:grid; gap:10px; align-content:start; }
+  .tool.wide { grid-column:1 / -1; }
+  .tool h3 small { display:block; color:var(--ink-3); font-weight:400; font-size:0.8rem; margin-top:4px; }
+  .tool p { margin:0; font-size:0.95rem; color:var(--ink-2); } .tool .tags { color:var(--ink-3); font-size:0.8rem; }
+  .quote { max-width:760px; margin:0 auto; text-align:center; }
+  .quote blockquote { margin:0; font-size:clamp(1.2rem,2.3vw,1.6rem); line-height:1.35; font-weight:500; letter-spacing:-0.02em; }
+  .quote cite { display:block; font-style:normal; color:var(--ink-3); margin-top:22px; font-size:0.95rem; }
+  .letter { display:grid; grid-template-columns:1fr 1.2fr; gap:36px; align-items:center; margin-top:44px; }
+  .letter img { width:100%; height:auto; border-radius:12px; box-shadow:0 10px 40px rgba(0,0,0,0.12); border:1px solid var(--line); }
+  .letter .more { font-size:1rem; color:var(--ink-2); }
+  .stats { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; max-width:760px; margin:0 auto 40px; }
+  .stat { background:var(--bg); border-radius:14px; padding:18px 20px; text-align:center; }
+  section:not(.alt) .stat { background:var(--bg-2); }
+  .stat b { display:block; font-size:2rem; font-weight:600; letter-spacing:-0.03em; }
+  .stat span { color:var(--ink-3); font-size:0.85rem; }
+  .stats-note { color:var(--ink-3); font-size:0.82rem; text-align:center; max-width:640px; margin:-26px auto 40px; }
+  .checks { margin:0; padding:0; list-style:none; display:grid; gap:12px; }
+  .checks li { padding-left:24px; position:relative; color:var(--ink-2); font-size:0.97rem; }
+  .checks li::before { content:""; position:absolute; left:0; top:0.55em; width:8px; height:8px; border-radius:50%; background:var(--accent); }
+  .checks b { color:var(--ink); }
+  .heimdall-grid { display:grid; grid-template-columns:1.1fr 1fr; gap:40px; align-items:start; }
+  .mark { width:64px; height:64px; border-radius:16px; display:block; margin:0 auto 18px; }
+  .kyiv p { font-size:1.1rem; color:var(--ink-2); }
+  .kyiv .pull { font-size:clamp(1.3rem,2.6vw,1.85rem); font-weight:500; letter-spacing:-0.02em; color:var(--ink); line-height:1.3; margin:0 0 28px; }
+  .about { display:grid; grid-template-columns:1.2fr 1fr; gap:48px; }
+  .about p { font-size:1.06rem; color:var(--ink-2); }
+  .timeline { list-style:none; margin:0; padding:0; }
+  .timeline li { padding:14px 0; border-top:1px solid var(--line); } .timeline li:first-child { border-top:0; padding-top:0; }
+  .timeline b { display:block; font-weight:600; } .timeline span { color:var(--ink-3); font-size:0.9rem; }
+  footer { padding:36px 0 48px; color:var(--ink-3); font-size:0.82rem; border-top:1px solid var(--line); }
+  footer .wrap { display:flex; flex-wrap:wrap; gap:8px 24px; justify-content:space-between; } footer a { color:var(--ink-3); }
+  @media (max-width:820px) { .nav ul { display:none; } .two,.tools,.letter,.heimdall-grid,.about { grid-template-columns:1fr; } .stats { grid-template-columns:1fr; } section { padding:64px 0; } .hero { padding:60px 0 44px; } .panel { padding:22px; } .nav .wrap { gap:10px; } }
+</style>
+</head>
+<body>
+<nav class="nav" aria-label="Sections">
+  <div class="wrap">
+    <a class="brand" href="#top">Гійом Блан</a>
+    <ul><li><a href="#autoreply">Автовідповіді</a></li><li><a href="#desk">Support Desk</a></li><li><a href="#scanners">Сканери</a></li><li><a href="#recommendation">Рекомендація</a></li><li><a href="#heimdall">Heimdall</a></li><li><a href="#kyiv">Київ</a></li><li><a href="#about">Про мене</a></li></ul>
+    <div class="langs"><a href="../">EN</a><a href="../fr/">FR</a><a href="../uk/" aria-current="true">UK</a></div>
+  </div>
+</nav>
+<main id="top">
+  <section class="hero"><div class="wrap">
+    <h1>Інженер підтримки.<br>Я створюю інструменти, на яких працює команда підтримки.</h1>
+    <p class="lede">Два роки на черзі Zendesk з великим потоком звернень для мобільної платформи винагород і більша частина автоматизації довкола неї: бот, що замінив платний Zapier, робоче місце агента, вбудоване в дашборд компанії, аудиторські сканери та локальний прототип комп'ютерного зору. Поза роботою: трекер повітряних тривог, який кияни відкривають щоночі.</p>
+    <div class="cta">
+      <a class="pill" href="../Guillaume_Blanc_CV.pdf">Завантажити резюме</a>
+      <a class="textlink" href="https://www.linkedin.com/in/guillaume-blanc-820bb528a">LinkedIn</a>
+      <a class="textlink" href="https://github.com/Dread92">GitHub</a>
+      <a class="textlink" href="mailto:guillaume.blanc92@hotmail.fr">Email</a>
+    </div>
+    <figure><svg class="diagram" viewBox="0 0 560 420" role="img" aria-labelledby="hero-t">
+        <title id="hero-t">How a new ticket flows through the auto-reply service</title>
+        <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="arrow"/></marker></defs>
+
+        <rect x="20" y="20" width="200" height="50" rx="6" class="box"/>
+        <text x="120" y="40" text-anchor="middle">New ticket</text>
+        <text x="120" y="58" text-anchor="middle" class="small">held by a tag, out of the agent queue</text>
+
+        <path d="M120 70 V100" class="edge strong" marker-end="url(#ah)"/>
+
+        <rect x="20" y="102" width="200" height="60" rx="6" class="box blue"/>
+        <text x="120" y="124" text-anchor="middle">Classifier</text>
+        <text x="120" y="141" text-anchor="middle" class="small">written rules, no AI</text>
+        <text x="120" y="154" text-anchor="middle" class="small">two categories only</text>
+
+        <path d="M220 132 H270" class="edge" marker-end="url(#ah)"/>
+        <rect x="272" y="102" width="170" height="60" rx="6" class="box"/>
+        <text x="357" y="124" text-anchor="middle">Fraud check</text>
+        <text x="357" y="141" text-anchor="middle" class="small">backend must say blocked</text>
+        <text x="357" y="154" text-anchor="middle" class="small">fails closed on any error</text>
+
+        <path d="M120 162 V200" class="edge strong" marker-end="url(#ah)"/>
+        <rect x="20" y="202" width="200" height="60" rx="6" class="box amber"/>
+        <text x="120" y="224" text-anchor="middle">Circuit breaker</text>
+        <text x="120" y="241" text-anchor="middle" class="small">caps per hour, per day, per fraud</text>
+        <text x="120" y="254" text-anchor="middle" class="small">tripped: writes pause, alert fires</text>
+
+        <path d="M220 232 H270" class="edge" marker-end="url(#ah)"/>
+        <rect x="272" y="202" width="170" height="60" rx="6" class="box amber"/>
+        <text x="357" y="224" text-anchor="middle">Kill switch</text>
+        <text x="357" y="241" text-anchor="middle" class="small">a file named STOP next to</text>
+        <text x="357" y="254" text-anchor="middle" class="small">the script: zero writes</text>
+
+        <path d="M70 262 V310" class="edge strong" marker-end="url(#ah)"/>
+        <path d="M170 262 V310" class="edge strong" marker-end="url(#ah)"/>
+
+        <rect x="10" y="312" width="118" height="54" rx="6" class="box green"/>
+        <text x="69" y="334" text-anchor="middle">Reply and solve</text>
+        <text x="69" y="351" text-anchor="middle" class="small">stamped with a run tag</text>
+
+        <rect x="136" y="312" width="150" height="54" rx="6" class="box"/>
+        <text x="211" y="334" text-anchor="middle">Release to agents</text>
+        <text x="211" y="351" text-anchor="middle" class="small">everything else, within 1 h</text>
+
+        <path d="M69 366 V394 H300" class="edge" marker-end="url(#ah)"/>
+        <rect x="302" y="376" width="240" height="34" rx="6" class="box"/>
+        <text x="422" y="397" text-anchor="middle" class="mono">journal, rollback by run tag</text>
+
+        <rect x="400" y="14" width="142" height="74" rx="6" class="box"/>
+        <text x="471" y="34" text-anchor="middle">Canary</text>
+        <text x="471" y="51" text-anchor="middle" class="small">every pass looks for the</text>
+        <text x="471" y="64" text-anchor="middle" class="small">signature of the August</text>
+        <text x="471" y="77" text-anchor="middle" class="small">incident and alerts</text>
+      </svg><figcaption>Шлях одного тікета через сервіс автовідповідей. Кожен блок на бурштиновому шляху існує через реальний інцидент.</figcaption></figure>
+  </div></section>
+
+  <section class="alt" id="autoreply"><div class="wrap">
+    <div class="sec-head"><div class="kicker">Сервіс автовідповідей</div><h2>Заміна Zapier, яка не може вийти з-під контролю.</h2><p>Команда платила за Zapier-сценарій, що автоматично відповідав на прості тікети. У серпні 2026 він дав збій і масово позначив акаунти як шахрайські. Я переписав його як єдиний сервіс на Node.js з одним правилом: жодна каральна дія без позитивного сигналу від бекенду, і кожен запис можна скасувати однією командою. Спочатку він працює в тіньовому режимі, потім наживо з поступовим збільшенням обсягу. З 1 вересня він опрацював 1 037 тікетів без жодного інциденту й відкату.</p><div class="meta"><span>Node.js 18, без залежностей</span><span>Zendesk REST API</span><span>Вересень 2026 і дотепер</span></div></div>
+    <div class="two">
+      <div class="panel"><h3>Дев'ять запобіжників</h3><ol class="guardrails"><li><span><b>Жодної довіри до міток.</b> Тип, пріоритет чи тег тікета ніколи не є достатньою підставою для каральної дії. Шахрайство потребує позитивного сигналу від бекенду, а за будь-якої помилки перевірка завершується відмовою.</span></li><li><span><b>Автоматичний вимикач.</b> Жорсткі ліміти на годину, на день і окремо для шахрайства. Спрацювання зупиняє всі записи й надсилає сповіщення; відновлення є свідомою командою людини.</span></li><li><span><b>Аварійна зупинка.</b> Файл із назвою STOP поруч зі скриптом блокує будь-який запис.</span></li><li><span><b>Захист беклогу.</b> Тікети, старші за задану межу, ніколи не чіпаються, тож перезапуск не може «розстріляти» беклог.</span></li><li><span><b>Обмежена видимість.</b> Сервіс бачить лише нові тікети без відповіді й позначає кожен переглянутий, тому нічого не перевіряється двічі.</span></li><li><span><b>Журнал і відкат.</b> Кожна дія має тег запуску й додається до журналу. Одна команда скасовує весь запуск, за бажанням із вибаченням.</span></li><li><span><b>Канарка.</b> Кожен прохід шукає точну сигнатуру серпневої помилки й сповіщає, якщо вона з'являється знову.</span></li><li><span><b>Спочатку тінь.</b> Режим наживо вмикається явно, а кількість дій за прохід зростає протягом днів.</span></li><li><span><b>Ніщо не застрягає.</b> Утримані тікети, які сервіс не вирішив, передаються агентам, а автоматизація Zendesk звільняє їх у будь-якому разі, якщо сервіс не працює.</span></li></ol></div>
+      <div><div class="log"><span class="dim"># one pass, shadow mode, trimmed</span>
+<span class="k">pass</span>  view=auto-reply-candidates  found=6  age_ok=6
+<span class="k">#8231xx</span> cat=no_message   <span class="ok">reply+solve</span>  run=gl_run_20260901
+<span class="k">#8231xx</span> cat=fraud        backend=blocked reasons=2  <span class="ok">reply+solve</span>
+<span class="k">#8231xx</span> cat=fraud        backend=<span class="warn">not_blocked</span>  <span class="dim">release to agents</span>
+<span class="k">#8231xx</span> cat=none         <span class="dim">release to agents</span>
+<span class="k">breaker</span> hour=3/12  day=9/60  fraud=1/20  <span class="ok">ok</span>
+<span class="k">canary</span> incidents_born_last_2h=0  <span class="ok">ok</span>
+<span class="dim">journal: actions.jsonl +2</span></div><p class="muted" style="margin-top:16px;font-size:0.95rem">У тій самій теці: аудитор у холостому режимі, що застосовує той самий класифікатор до всього беклогу без жодного запису, відновлюваний виконавець для опрацювання старих тікетів і разовий фоловап для застарілих звернень. Ті самі правила, той самий журнал, той самий відкат.</p></div>
+    </div>
+  </div></section>
+
+  <section id="desk"><div class="wrap">
+    <div class="sec-head"><div class="kicker">Support Desk</div><h2>Робоче місце агента всередині дашборду компанії.</h2><p>Раніше агенти для кожного тікета перемикалися між Zendesk і внутрішнім дашбордом користувачів. Support Desk збирає весь цикл на одному екрані: черга, переписка з тікета зі скриншотами, профіль користувача з пов'язаними акаунтами й причинами блокування, дії, поле відповіді з макросами та тижнева статистика. Кожен агент підключається через власний логін Zendesk, тож кожна дія лишається персоналізованою. Пізніше команда розробки вбудувала цей дизайн у дашборд нативно.</p><div class="meta"><span>Userscript, 4 500 рядків</span><span>Zendesk OAuth для кожного агента</span><span>Перейнято розробкою, жовтень 2026</span></div></div>
+    <div class="panel"><svg class="diagram" viewBox="0 0 1000 300" role="img" aria-labelledby="desk-t">
+        <title id="desk-t">Support Desk architecture: one screen in front of two systems</title>
+        <rect x="330" y="20" width="340" height="260" rx="8" class="box blue"/>
+        <text x="500" y="46" text-anchor="middle" style="font-weight:600">Support Desk (one screen)</text>
+        <rect x="350" y="62" width="140" height="40" rx="5" class="box"/><text x="420" y="86" text-anchor="middle">Ticket queue</text>
+        <rect x="510" y="62" width="140" height="40" rx="5" class="box"/><text x="580" y="86" text-anchor="middle">Thread, screenshots</text>
+        <rect x="350" y="112" width="140" height="40" rx="5" class="box"/><text x="420" y="136" text-anchor="middle">User profile, fraud</text>
+        <rect x="510" y="112" width="140" height="40" rx="5" class="box"/><text x="580" y="136" text-anchor="middle">Actions, payouts</text>
+        <rect x="350" y="162" width="140" height="40" rx="5" class="box"/><text x="420" y="186" text-anchor="middle">Reply, macro wheel</text>
+        <rect x="510" y="162" width="140" height="40" rx="5" class="box"/><text x="580" y="186" text-anchor="middle">Weekly stats</text>
+        <text x="500" y="232" text-anchor="middle" class="small">hold Q: radial macro picker</text>
+        <text x="500" y="250" text-anchor="middle" class="small">runs as a userscript on the dashboard, no deploy needed</text>
+
+        <rect x="40" y="90" width="220" height="110" rx="8" class="box"/>
+        <text x="150" y="120" text-anchor="middle" style="font-weight:600">Zendesk</text>
+        <text x="150" y="142" text-anchor="middle" class="small">tickets, comments, macros, views</text>
+        <text x="150" y="160" text-anchor="middle" class="small">OAuth: each agent's own login</text>
+        <text x="150" y="178" text-anchor="middle" class="small">every action attributable</text>
+        <path d="M260 145 H330" class="edge strong" marker-end="url(#ah)" marker-start="url(#ah)"/>
+
+        <rect x="740" y="90" width="220" height="110" rx="8" class="box"/>
+        <text x="850" y="120" text-anchor="middle" style="font-weight:600">Internal backend</text>
+        <text x="850" y="142" text-anchor="middle" class="small">user, linked accounts, block reasons</text>
+        <text x="850" y="160" text-anchor="middle" class="small">coins, verification, payout status</text>
+        <text x="850" y="178" text-anchor="middle" class="small">session shared from the dashboard</text>
+        <path d="M670 145 H740" class="edge strong" marker-end="url(#ah)" marker-start="url(#ah)"/>
+      </svg><figcaption class="center">Дві системи, один екран. Агент не виходить із дашборду; скрипт спілкується з обома API від його імені.</figcaption></div>
+  </div></section>
+
+  <section class="alt" id="scanners"><div class="wrap">
+    <div class="sec-head"><div class="kicker">Набір сканерів</div><h2>Знайти закономірність до того, як вона стане сплеском тікетів.</h2><p>Дані підтримки повні закономірностей, які нікому шукати: платіжний провайдер, що збоїть в одній країні; гра, що породжує тікетів значно більше за свою базу встановлень; сорок людей, які дякують за виправлення, що вже надіслане. Кожен сканер витягує зріз тікетів, збагачує його даними бекенду й показує список, з яким агент може працювати масово. Нічого не надсилається без перегляду й підтвердження, і кожна масова дія повторно перевіряє тікет безпосередньо перед записом.</p></div>
+    <div class="panel" style="margin-bottom:18px"><svg class="diagram" viewBox="0 0 1000 170" role="img" aria-labelledby="scan-t">
+        <title id="scan-t">How every scanner works: pull, enrich, classify, review, act</title>
+        <rect x="20" y="50" width="150" height="64" rx="6" class="box"/>
+        <text x="95" y="76" text-anchor="middle">Pull tickets</text>
+        <text x="95" y="94" text-anchor="middle" class="small">search, paginated to 300k</text>
+        <path d="M170 82 H220" class="edge strong" marker-end="url(#ah)"/>
+        <rect x="222" y="50" width="150" height="64" rx="6" class="box"/>
+        <text x="297" y="76" text-anchor="middle">Enrich</text>
+        <text x="297" y="94" text-anchor="middle" class="small">batch user overview, payouts</text>
+        <path d="M372 82 H422" class="edge strong" marker-end="url(#ah)"/>
+        <rect x="424" y="50" width="150" height="64" rx="6" class="box blue"/>
+        <text x="499" y="76" text-anchor="middle">Classify</text>
+        <text x="499" y="94" text-anchor="middle" class="small">written rules, multilingual</text>
+        <path d="M574 82 H624" class="edge strong" marker-end="url(#ah)"/>
+        <rect x="626" y="50" width="150" height="64" rx="6" class="box amber"/>
+        <text x="701" y="76" text-anchor="middle">Review</text>
+        <text x="701" y="94" text-anchor="middle" class="small">the agent reads the list</text>
+        <path d="M776 82 H826" class="edge strong" marker-end="url(#ah)"/>
+        <rect x="828" y="50" width="150" height="64" rx="6" class="box green"/>
+        <text x="903" y="76" text-anchor="middle">Act in bulk</text>
+        <text x="903" y="94" text-anchor="middle" class="small">confirm, re-verify, then write</text>
+        <text x="500" y="145" text-anchor="middle" class="small">Optional pass: a local vision model reads ticket screenshots on the agent's own machine. No user data leaves the PC.</text>
+      </svg></div>
+    <div class="tools"><div class="tool wide"><h3>Support Suite: виплати, шахрайство, монети<small>4 700 рядків</small></h3><p>Шість сканерів в одній панелі. Рядки виплат містять суму, провайдера, постачальника подарункових карток, ознаки блокування та кількох акаунтів і стан коридору з потоку збоїв. Вкладка шахрайства групує 75 причин блокування за родинами й має готовий набір для бот-банів. «Монети» відрізняє заявки про покупку від заявок про рівень за всіма відповідями клієнта, не лише першою. Детектор подяк закриває тікети, останнє повідомлення яких є лише вдячністю, будь-якою мовою, із захистом від питань. Дедублікація між вкладками та кнопка злиття для відправників кількох тікетів.</p><div class="tags">Zendesk API, пакетні ендпоінти бекенду, багатомовні текстові правила, масові макроси з підтвердженням</div></div><div class="tool"><h3>Global Health Scanner<small>Версія з комп'ютерним зором</small></h3><p>Звіт на чотири вкладки по всій черзі: огляд, виплати за провайдером і країною, найпроблемніші ігри (тікети відносно встановлень), гарячі точки за рівнями. Локальна модель комп'ютерного зору на моєму власному GPU читає скриншоти й додає підрахунки на основі доказів поруч з оцінкою за встановленнями. Живий перегляд під час сканування, експорт усього в CSV.</p><div class="tags">Ollama, qwen3-vl, автономний HTML-звіт, щоденні знімки</div></div><div class="tool"><h3>Auto-Processor<small>Каркас правил</small></h3><p>Автономний обробник для однозначно вирішуваних категорій, що працює з випадковим інтервалом 15 до 60 секунд, щоб поводитися як людина. Холостий режим за замовчуванням. Повторно перевіряє кожен тікет перед надсиланням: досі відкритий, ніхто не відповів після сканування. Кожне надсилання приписується агенту й тегується.</p><div class="tags">макрос плюс персоналізований рядок, обмеження частоти, теги для аудиту</div></div><div class="tool"><h3>Payout Recovery</h3><p>Проактивне відновлення заблокованих виплат, не пов'язаних із шахрайством: тимчасово недоступні коридори з евристикою відновлення за провайдером і пакетним повторним надсиланням на ту саму адресу, черга виправлення невалідних email в один клік і режим лише перегляду для решти. Статуси шахрайства ніколи не завантажуються. Кожен пакет схвалює людина.</p><div class="tags">потік збоїв виплат, пакетний огляд, правило «та сама адреса»</div></div><div class="tool"><h3>Support Monitor<small>Статичний дашборд</small></h3><p>Дашборд для керівництва: тікети за день і час першої відповіді, цей тиждень проти минулого; вирішені тікети за агентами, де бот і процес із шахрайством мають окремі рядки; відкритий беклог за відповідальними й часом очікування. Планове завдання опитує Zendesk кожні дві години й публікує лише агреговані числа на статичну сторінку. Без сервера, без персональних даних.</p><div class="tags">плановий експорт, статичний хостинг, лише агреговані дані</div></div><div class="tool"><h3>FAQ Scanner</h3><p>Знаходить невирішені тікети, що відповідають простим темам FAQ, і масово застосовує наявний макрос команди після того, як агент перегляне список.</p><div class="tags">правила за темами, масовий макрос, перегляд перед надсиланням</div></div><div class="tool"><h3>Social Media Review</h3><p>Карусель для черги перевірки скриншотів із керуванням з клавіатури: один допис за раз, схвалити, відхилити або пропустити стрілками, групування за користувачем, попереднє завантаження наступного зображення. Кожне рішення є натисканням клавіші; нічого не вирішується масово.</p><div class="tags">підписані URL зображень, клавіатурний UX, обробка помилок</div></div><div class="tool"><h3>Support Tool, Unified Dock, інсталятор</h3><p>Віджет продуктивності для вікна тікета (пошук акаунта за адресою запитувача чи відправника, перевірка живості для iOS однією кнопкою за подвійним підтвердженням), док, що згортає всі інструменти в одну іконку й сам знаходить нові, та інсталятор для Windows у три кліки з автоматичними оновленнями. Нових агентів підключали менш ніж за п'ять хвилин.</p><div class="tags">міст сесії між доменами, виявлення плагінів, онбординг</div></div></div>
+    <p class="muted center" style="margin:28px auto 0;font-size:0.9rem;max-width:680px">Ці інструменти створені для мого роботодавця й працюють на його внутрішніх системах, тому код не є публічним. Тут показано дизайн, правила безпеки та масштаб. Радо проведу демонстрацію будь-якого з них на дзвінку.</p>
+  </div></section>
+
+  <section id="recommendation"><div class="wrap">
+    <div class="quote"><div class="kicker" style="margin-bottom:18px">Від моєї керівниці в Gamelight</div><blockquote>«Він самостійно розробив кілька внутрішніх інструментів, що стали частиною щоденної роботи команди. Він лишався надійним і ефективним під тиском, зокрема під час критичних інцидентів, і постійно виявляв ініціативу в пошуку можливостей покращити наявні процеси.»</blockquote><cite>Георгіана Фотаке, Team Lead Operations, Gamelight GmbH. Підписаний лист, 6 листопада 2026 (оригінал англійською).</cite></div>
+    <div class="letter">
+      <a href="../Gamelight_Recommendation_Letter.pdf"><img src="../letter.png" alt="Перша сторінка підписаного рекомендаційного листа від Gamelight" width="620" height="877" loading="lazy"></a>
+      <div class="more"><p>Лист охоплює обидва роки повністю: багатомовну чергу з великим потоком звернень із платежами, виплатами, шахрайством і верифікацією; інструменти, що замінили сторонню підписку й рано виявляли проблеми продукту; робоче місце агента, дизайн якого перейняла команда розробки; та операційний обсяг, який я взяв на себе після відходу тімліда, зокрема адміністрування Zendesk, схвалення виплат і звітність.</p><p>У ньому також прямо зазначено, що завершення співпраці є наслідком внутрішньої реструктуризації підтримки й не пов'язане з якістю роботи.</p><p><a class="textlink" href="../Gamelight_Recommendation_Letter.pdf">Прочитати підписаний лист (PDF, англійською)</a></p></div>
+    </div>
+  </div></section>
+
+  <section class="alt" id="heimdall"><div class="wrap">
+    <div class="sec-head"><img class="mark" src="../heimdall-mark.png" alt="" width="64" height="64"><div class="kicker">Heimdall</div><h2>Трекер повітряних тривог і дронів для Києва в реальному часі.</h2><p>Я спроєктував і створив Heimdall сам, для людей поруч зі мною, і випустив його з відкритим кодом. Єдиний сервіс на Python читає офіційні дані про тривоги район за районом і два десятки публічних Telegram-каналів, розбирає український і російський текст за написаними правилами й показує те, про що повідомили: тактичну карту з доказом за кожною позначкою та легку сторінку для одного місця й усього в радіусі 30 км. Push-сповіщення будять телефон навіть із закритим застосунком. Три мови, дев'ятнадцять областей. Це свідомо не система оповіщення, і код дотримується правил безпеки, записаних до першого рядка.</p><div class="meta"><span>Python, лише стандартна бібліотека</span><span>Ліцензія MIT</span><span>Наживо на heimdall.com.ua</span></div></div>
+    <div class="stats"><div class="stat"><b>3 531</b><span>пристрої-дні за останні 30 днів</span></div><div class="stat"><b>4 809</b><span>відкриттів за останні 30 днів</span></div><div class="stat"><b>96</b><span>пристроїв у звичайний день</span></div></div>
+    <p class="stats-note">Підраховано без відстеження будь-кого: щоденний хеш пристрою перегенеровується опівночі, тож ту саму людину не можна впізнати наступного дня. Дані з вбудованої панелі використання, 6 листопада 2026.</p>
+    <div class="heimdall-grid">
+      <div class="panel"><svg class="diagram" viewBox="0 0 520 330" role="img" aria-labelledby="hm-t">
+          <title id="hm-t">Heimdall data flow</title>
+          <rect x="20" y="20" width="150" height="52" rx="6" class="box"/>
+          <text x="95" y="42" text-anchor="middle">Official alerts</text>
+          <text x="95" y="60" text-anchor="middle" class="small">by raion and hromada</text>
+          <rect x="20" y="86" width="150" height="52" rx="6" class="box"/>
+          <text x="95" y="108" text-anchor="middle">Telegram channels</text>
+          <text x="95" y="126" text-anchor="middle" class="small">Air Force, local trackers</text>
+          <rect x="20" y="152" width="150" height="52" rx="6" class="box"/>
+          <text x="95" y="174" text-anchor="middle">Gazetteer</text>
+          <text x="95" y="192" text-anchor="middle" class="small">villages, districts, bridges</text>
+          <path d="M170 46 H210 V112 H244" class="edge strong" marker-end="url(#ah)"/>
+          <path d="M170 112 H244" class="edge strong" marker-end="url(#ah)"/>
+          <path d="M170 178 H210 V112" class="edge strong"/>
+          <rect x="246" y="80" width="150" height="64" rx="6" class="box blue"/>
+          <text x="321" y="104" text-anchor="middle">Rule parser</text>
+          <text x="321" y="122" text-anchor="middle" class="small">position, heading, count,</text>
+          <text x="321" y="134" text-anchor="middle" class="small">confidence, stated altitude</text>
+          <path d="M396 112 H420" class="edge strong" marker-end="url(#ah)"/>
+          <rect x="422" y="80" width="88" height="64" rx="6" class="box"/>
+          <text x="466" y="104" text-anchor="middle">State</text>
+          <text x="466" y="122" text-anchor="middle" class="small">grey at 5 min,</text>
+          <text x="466" y="134" text-anchor="middle" class="small">gone at 15</text>
+          <path d="M466 144 V200" class="edge strong" marker-end="url(#ah)"/>
+          <rect x="300" y="202" width="210" height="44" rx="6" class="box"/>
+          <text x="405" y="220" text-anchor="middle">Live stream to every open page</text>
+          <text x="405" y="238" text-anchor="middle" class="small">beats every 15 s, 2 s under ballistic threat</text>
+          <path d="M350 246 V280" class="edge" marker-end="url(#ah)"/>
+          <path d="M460 246 V280" class="edge" marker-end="url(#ah)"/>
+          <rect x="300" y="282" width="100" height="36" rx="6" class="box green"/>
+          <text x="350" y="305" text-anchor="middle">Tactical map</text>
+          <rect x="410" y="282" width="100" height="36" rx="6" class="box green"/>
+          <text x="460" y="305" text-anchor="middle">Light page</text>
+          <rect x="10" y="240" width="176" height="78" rx="6" class="box red"/>
+          <text x="98" y="262" text-anchor="middle">Web Push</text>
+          <text x="98" y="280" text-anchor="middle" class="small">VAPID, hand-rolled</text>
+          <text x="98" y="294" text-anchor="middle" class="small">a thousand phones in seconds,</text>
+          <text x="98" y="308" text-anchor="middle" class="small">over kept-open connections</text>
+          <path d="M300 224 H230 V279 H186" class="edge" marker-end="url(#ah)"/>
+        </svg><figcaption>Від публічного допису до позначки на карті, з фразою-джерелом в одному дотику.</figcaption></div>
+      <div><ul class="checks"><li><b>Докази, а не здогадки.</b> Кожна позначка відкриває фразу-джерело, канал, час і рівень упевненості. Жодної екстрапольованої траєкторії, якщо ви її не ввімкнули, жодного вигаданого часу прибуття.</li><li><b>Застаріле ніколи не показується як активне.</b> Ціль без нового повідомлення сіріє через 5 хвилин і зникає через 15.</li><li><b>Запобіжні попередження.</b> Зльоти винищувачів і балістичні загрози піднімають банер до того, як щось помічено, і знімають його, щойно наступний допис скасовує загрозу.</li><li><b>Повтор та історія.</b> Будь-яка з останніх семи ночей відтворюється як погодний радар; вибухи та збиття за 72 години.</li><li><b>Керування з дашборду.</b> Додати чи вимкнути канал без деплою, нові канали починають у режимі випробування, повідомлення адміністратора всім читачам трьома мовами.</li><li><b>Працює будь-де.</b> Лише стандартна бібліотека, один Dockerfile, деплой на Fly.io, демо-режим із фіктивними тривогами для розробки.</li></ul>
+        <p style="margin-top:22px"><a class="textlink" href="https://github.com/Dread92/Heimdall-map">Код на GitHub</a><br><a class="textlink" href="https://heimdall.com.ua/m">Тактична карта наживо</a><br><a class="textlink" href="https://heimdall.com.ua/guide">Що робити, посібник</a></p>
+      </div>
+    </div>
+  </div></section>
+
+  <section id="kyiv"><div class="wrap narrow kyiv">
+    <div class="kicker" style="margin-bottom:14px">Робота з Києва</div>
+    <p class="pull">Усе на цій сторінці створено в Києві, під час війни.</p>
+    <p>Я живу тут ще з часів до повномасштабного вторгнення, і я залишився. З лютого 2022 місто живе з повітряними тривогами, найчастіше вночі, іноді кількома поспіль, і з зимами планових і позапланових відключень світла, коли б'ють по енергосистемі. Робочий день тут планується довкола речей, про які більшість команд ніколи не думає: де найближче укриття, на скільки вистачить батареї ноутбука, у які години найімовірніше буде світло, і чи сьогоднішня тривога з тих, під які можна спати, чи з тих, під які не можна.</p><p>Це контекст двох речей на цій сторінці. Перша: надійність як звичка. Коли власна електрика, інтернет і сон не гарантовані, вчишся будувати системи, що відмовляють безпечно, ведуть журнал і можуть бути відкочені кимось іншим, якщо тебе немає поруч. Запобіжники в сервісі автовідповідей не були абстрактною вправою. Друга: Heimdall. Він існує, бо моїй родині й сусідам потрібна була ясніша картина того, про що насправді повідомляли над містом, і бо єдиний чесний спосіб його створити: показувати доказ за кожною позначкою й ніколи не вдавати, що знаєш більше, ніж джерела.</p><p>Паралельно з роботою я з 2022 року є провідним розробником FUSA, громадської організації, що підтримує українських захисників, і беру участь у волонтерській платформі на Київщині, яка займається гуманітарною логістикою з 2014 року. Це не історія про труднощі. Це середовище, в якому я працюю, і воно зробило мене кращим у своїй справі.</p>
+  </div></section>
+
+  <section class="alt" id="about"><div class="wrap about">
+    <div><h2>Про мене</h2><p style="margin-top:16px">Я француз, живу в Києві, і десять років лагоджу речі для людей: спершу ПК і невеликі мережі для бізнесу, потім два роки підтримки другої лінії на мобільній платформі винагород, де зрештою створив більшість інструментів команди. До ІТ: три роки у французькій жандармерії як оперативник, де навчився лишатися спокійним і діяти за процедурою, коли це важливо.</p><p>Мені подобаються задачі, розв'язком яких є інструмент, що команда продовжує використовувати, і я не довіряю автоматизації, яку не можна відкотити. Працюю англійською та французькою й відкритий до віддалених ролей у технічній підтримці, інженерії підтримки, операціях підтримки та автоматизації.</p><p style="margin-top:22px"><a class="pill" href="../Guillaume_Blanc_CV.pdf">Завантажити резюме</a></p></div>
+    <ul class="timeline"><li><b>Technical Support Specialist і автоматизація процесів, Gamelight</b><span>Вересень 2024 до грудня 2026, віддалено. У серпні 2026 перейняв операційний обсяг тімліда.</span></li><li><b>Heimdall, автор</b><span>2026, відкритий код, щоденне використання в Києві.</span></li><li><b>Провідний розробник, FUSA</b><span>З 2022 дотепер. Громадська організація підтримки українських захисників.</span></li><li><b>Комп'ютерний технік, LDLC</b><span>2019 до 2022, Ліон. Індивідуальні збірки, діагностика, віддалена підтримка.</span></li><li><b>Жандарм, Gendarmerie nationale</b><span>2015 до 2018. Оперативне реагування, кваліфікація APJA.</span></li><li><b>Веброзробник та інтегратор, OpenClassrooms</b><span>2023. Державно зареєстрована професійна сертифікація, RNCP рівень 5.</span></li></ul>
+  </div></section>
+</main>
+<footer><div class="wrap">
+  <span>Гійом Блан, Київ. Оновлено в листопаді 2026.</span>
+  <span><a href="mailto:guillaume.blanc92@hotmail.fr">guillaume.blanc92@hotmail.fr</a> &nbsp;&nbsp; <a href="https://github.com/Dread92">github.com/Dread92</a> &nbsp;&nbsp; <a href="https://www.linkedin.com/in/guillaume-blanc-820bb528a">LinkedIn</a></span>
+</div></footer>
+<script>
+(function(){var links=document.querySelectorAll('.nav ul a');var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a;});if(!('IntersectionObserver' in window))return;var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){links.forEach(function(a){a.removeAttribute('aria-current');});var a=map[e.target.id];if(a)a.setAttribute('aria-current','true');}});},{rootMargin:'-40% 0px -55% 0px'});Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el);});})();
+</script>
+</body>
+</html>
