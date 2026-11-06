@@ -14,7 +14,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="canonical" href="https://dread92.github.io/uk/">
 <link rel="alternate" hreflang="en" href="https://dread92.github.io/"><link rel="alternate" hreflang="uk" href="https://dread92.github.io/uk/"><link rel="alternate" hreflang="x-default" href="https://dread92.github.io/">
-<link rel="icon" href="../heimdall-mark.png">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231d1d1f'/%3E%3Ctext x='32' y='42' font-family='-apple-system,Segoe UI,Helvetica,Arial,sans-serif' font-size='28' font-weight='700' fill='%23fff' text-anchor='middle' letter-spacing='-1'%3EGB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script>(function(){try{var m=localStorage.getItem('theme');if(m==='dark')document.documentElement.setAttribute('data-theme','dark');}catch(e){}})();</script>
@@ -511,7 +511,16 @@
     </div></details>
   </div></section>
 
-  <section id="kyiv"><div class="wrap narrow kyiv">
+  <section id="game"><div class="wrap">
+    <div class="sec-head"><div class="kicker">Сайд-проєкт</div><h2>Ukraine Sky Defenders: гра про нічне небо Києва.</h2><p>Браузерна гра в жанрі оборони від хвиль: ви захищаєте невеликий будинок під Батьківщиною-Матір'ю, поки вночі летять шахеди, крилаті ракети, FPV-дрони й балістика. Працює на комп'ютері й телефоні, встановлюється, трьома мовами.</p><div class="meta"><span>JavaScript і Canvas, без фреймворків</span><span>Firebase Hosting, Firestore, Auth</span><span>PWA, що встановлюється</span></div></div>
+    <figure class="shot dark"><div class="frame"><i></i><i></i><i></i></div><img src="../game-1.webp" alt="Хвиля 8: шахеди, FPV-дрони й крилата ракета над Києвом." width="1440" height="810" loading="lazy"><figcaption>Хвиля 8: шахеди, FPV-дрони й крилата ракета над Києвом.</figcaption></figure>
+    <div class="shots2" style="margin-top:22px"><figure class="shot dark"><div class="frame"><i></i><i></i><i></i></div><img src="../game-2.webp" alt="Фаза боса: попередження про балістику, вікно вразливості, супровід." width="1440" height="810" loading="lazy"><figcaption>Фаза боса: попередження про балістику, вікно вразливості, супровід.</figcaption></figure><figure class="shot dark"><div class="frame"><i></i><i></i><i></i></div><img src="../game-m.webp" alt="На телефоні: кнопки на верхніх панелях, обидва великі пальці вільні." width="1100" height="508" loading="lazy"><figcaption>На телефоні: кнопки на верхніх панелях, обидва великі пальці вільні.</figcaption></figure></div>
+    <details class="more-block"><summary><span>Як це зроблено</span></summary><div class="more-in narrow">
+      <p>Уся гра постачається як один самодостатній HTML-файл: близько 3 600 рядків JavaScript на циклі Canvas 2D, із вбудованими спрайтами й аудіо, версіонованим service worker для офлайн-гри та Firebase для таблиці лідерів, акаунтів і збережень у хмарі. 24 захисники зі своєю зброєю й ультимейтами, 10 типів ворогів, 2 багатофазні боси, 4 рівні складності, повністю українською, французькою та англійською.</p><p>Деталі, які мені подобаються: інтерфейс підлаштовується під тип введення, а не під розмір екрана, тож на телефоні обидва великі пальці вільні, а з мишею звичний макет. Вороги змушують ухвалювати рішення: шахед зі щитом, який треба обійти, носій, що розпадається на три дрони, глушилка, що вимикає ваші турелі. Коли гравці повідомили про випадкові зависання, я додав захист від збоїв, який тримає гру запущеною й записує першу помилку з контекстом, що дало змогу збирати діагностику з реальних телефонів без дебагера.</p><p>Гру створено з активним використанням ШІ, і я кажу про це відкрито. Концепція, геймдизайн, баланс, арт-дирекція, тестування й налаштування безпеки Firebase на мені; код писався під моїм керівництвом через невеликі самоперевірні патч-скрипти, кожен із перевіркою синтаксису перед деплоєм. Добра вправа з керування інструментами ШІ із запобіжниками.</p>
+    </div></details>
+  </div></section>
+
+  <section class="alt" id="kyiv"><div class="wrap narrow kyiv">
     <div class="kicker" style="margin-bottom:14px">Робота з Києва</div>
     <p class="pull">Усе на цій сторінці створено в Києві, під час війни.</p>
     <p class="ky-s">Тривоги вночі, графіки відключень, робочий день, спланований довкола найближчого укриття. Це навчило мене будувати системи, що відмовляють безпечно.</p>
@@ -520,7 +529,7 @@
     </div></details>
   </div></section>
 
-  <section class="alt" id="about"><div class="wrap about">
+  <section id="about"><div class="wrap about">
     <div><h2>Про мене</h2><p style="margin-top:16px">Я француз, живу в Києві, і десять років лагоджу речі для людей: спершу ПК і невеликі мережі для бізнесу, потім два роки підтримки другої лінії на мобільній платформі винагород, де зрештою створив більшість інструментів команди. До ІТ: три роки у французькій жандармерії як оперативник, де навчився лишатися спокійним і діяти за процедурою, коли це важливо.</p><p>Мені подобаються задачі, розв'язком яких є інструмент, що команда продовжує використовувати, і я не довіряю автоматизації, яку не можна відкотити. Працюю англійською та французькою й відкритий до віддалених ролей у технічній підтримці, інженерії підтримки, операціях підтримки та автоматизації.</p><p style="margin-top:22px"><a class="pill" href="../Guillaume_Blanc_CV.pdf">Завантажити резюме</a></p></div>
     <ul class="timeline"><li><b>Technical Support Specialist і автоматизація процесів, Gamelight</b><span>Вересень 2024 до грудня 2026, віддалено. У серпні 2026 перейняв операційний обсяг тімліда.</span></li><li><b>Heimdall, автор</b><span>2026, відкритий код, щоденне використання в Києві.</span></li><li><b>Провідний розробник, FUSA</b><span>З 2022 дотепер. Громадська організація підтримки українських захисників.</span></li><li><b>Комп'ютерний технік, LDLC</b><span>2019 до 2022, Ліон. Індивідуальні збірки, діагностика, віддалена підтримка.</span></li><li><b>Жандарм, Gendarmerie nationale</b><span>2015 до 2018. Оперативне реагування, кваліфікація APJA.</span></li><li><b>Веброзробник та інтегратор, OpenClassrooms</b><span>2023. Державно зареєстрована професійна сертифікація, RNCP рівень 5.</span></li></ul>
   </div></section>
