@@ -276,6 +276,27 @@
 
   .tg-app { display:flex; align-items:center; justify-content:center; gap:8px; margin:12px auto 0; font-size:0.95rem; font-weight:500; color:#229ED9; }
   .tg-app svg { width:18px; height:18px; }
+
+  .l-short { display:none; }
+  .m-cue { display:none; }
+  @media (max-width:600px) {
+    .hero { padding:0 0 56px; }
+    .hero-top { min-height:calc(100svh - 64px); display:flex; flex-direction:column; justify-content:center; align-items:center; position:relative; padding:16px 0 88px; }
+    .hero h1 { font-size:2.5rem; line-height:1.05; letter-spacing:-0.04em; }
+    .l-full { display:none; } .l-short { display:inline; }
+    .hero .lede { font-size:1.08rem; color:var(--ink-3); max-width:30ch; margin-top:20px; }
+    .skills { display:none; }
+    .cta { margin-top:34px; gap:18px; }
+    .cta .pill { max-width:260px; padding:14px 0; }
+    .cta-links { gap:24px; font-size:0.95rem; }
+    .m-cue { display:flex; flex-direction:column; align-items:center; gap:2px; position:absolute; left:50%; bottom:22px; transform:translateX(-50%); color:var(--ink-3); font-size:0.75rem; letter-spacing:0.04em; opacity:0; animation:cuein .9s ease 1.2s forwards; }
+    .m-cue:hover { text-decoration:none; }
+    .m-cue svg { width:20px; height:20px; animation:cuebob 2.2s ease-in-out 2s infinite; }
+    .glance-h { margin-top:8px; }
+  }
+  @keyframes cuein { to { opacity:.8; } }
+  @keyframes cuebob { 0%,100% { transform:translateY(0); opacity:.5; } 50% { transform:translateY(6px); opacity:1; } }
+  @media (prefers-reduced-motion: reduce) { .m-cue, .m-cue svg { animation:none; opacity:.8; } }
 </style>
 </head>
 <body>
@@ -289,14 +310,17 @@
 </nav>
 <main id="top">
   <section class="hero"><div class="wrap">
-    <h1>Інженер підтримки.<br>Я створюю інструменти, на яких працює команда підтримки.</h1>
-    <p class="lede">Десять років лагоджу речі для людей: від ПК і невеликих мереж до черги Zendesk з великим потоком звернень, де я створив більшість автоматизації команди. Поза роботою: Heimdall, волонтерський трекер повітряних тривог, який кияни відкривають щоночі.</p>
+    <div class="hero-top">
+    <h1><span class="l-full">Інженер підтримки.<br>Я створюю інструменти, на яких працює команда підтримки.</span><span class="l-short">Інженер підтримки.<br>Я створюю інструменти.</span></h1>
+    <p class="lede"><span class="l-full">Десять років лагоджу речі для людей: від ПК і невеликих мереж до черги Zendesk з великим потоком звернень, де я створив більшість автоматизації команди. Поза роботою: Heimdall, волонтерський трекер повітряних тривог, який кияни відкривають щоночі.</span><span class="l-short">Десять років лагоджу речі для людей. Останнім часом автоматизація для команди підтримки з великим потоком звернень.</span></p>
     <ul class="skills" aria-label="Ключові навички"><li>Автоматизація підтримки</li><li>Zendesk API</li><li>Node.js</li><li>Python</li><li>LLM і комп'ютерний зір</li><li>Userscripts</li><li>Дашборди</li><li>Реагування на інциденти</li><li>Linux</li></ul>
     <div class="cta">
       <a class="pill" href="../Guillaume_Blanc_CV.pdf">Завантажити резюме</a>
       <span class="cta-links"><a class="textlink" href="https://www.linkedin.com/in/guillaume-blanc-820bb528a">LinkedIn</a><a class="textlink" href="https://github.com/Dread92">GitHub</a><a class="textlink" href="mailto:guillaume.blanc92@hotmail.fr">Email</a></span>
     </div>
-    <h2 class="glance-h">Роботи з першого погляду</h2>
+    <a class="m-cue" href="#glance" aria-label="Гортайте, щоб побачити роботи"><span>Роботи</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
+    </div>
+    <h2 class="glance-h" id="glance">Роботи з першого погляду</h2>
     <div class="glance"><a class="gcard" href="#autoreply"><span class="gimg"><img src="../autoreply-sm.webp" alt="" width="640" height="400" loading="eager"></span><b>Сервіс автовідповідей</b><span>Замінив платний Zapier. 1 037 тікетів, нуль інцидентів.</span></a><a class="gcard" href="#desk"><span class="gimg"><img src="../desk-sm.webp" alt="" width="640" height="400" loading="eager"></span><b>Support Desk</b><span>Робоче місце агента, яке розробка вбудувала нативно.</span></a><a class="gcard" href="#scanners"><span class="gimg"><img src="../scanner-sm.webp" alt="" width="640" height="400" loading="eager"></span><b>Зір і сканери</b><span>Комп'ютерний зір на скриншотах користувачів для виявлення трендів.</span></a><a class="gcard" href="#heimdall"><span class="gimg"><img src="../heimdall-sm.webp" alt="" width="640" height="400" loading="eager"></span><b>Heimdall</b><span>Безкоштовний трекер тривог для Києва, ним користуються групи ППО.</span></a></div>
     <a class="scroll-cue" href="#autoreply" aria-label="Гортайте, щоб побачити роботи"><span>Гортайте, щоб побачити роботи</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
   </div></section>
