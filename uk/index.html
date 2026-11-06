@@ -237,6 +237,15 @@
   .open-app.tg { background:#229ED9; color:#fff; } .open-app.tg small { opacity:.92; }
   .open-app .tgi { width:22px; height:22px; flex:none; }
   @media (max-width:600px) { .hm-ctas .open-app { width:100%; } }
+
+  .more-block > summary span { position:relative; overflow:hidden; isolation:isolate; }
+  .more-block > summary span::before { content:""; position:absolute; top:-20%; bottom:-20%; left:-60%; width:45%; z-index:-1; pointer-events:none;
+    background:linear-gradient(100deg, transparent 0%, rgba(255,255,255,0) 20%, rgba(0,113,227,0.26) 50%, rgba(255,255,255,0) 80%, transparent 100%);
+    transform:skewX(-20deg); animation:blade 4.5s ease-in-out infinite; }
+  :root[data-theme="dark"] .more-block > summary span::before { background:linear-gradient(100deg, transparent 0%, rgba(255,255,255,0) 20%, rgba(255,255,255,0.22) 50%, rgba(255,255,255,0) 80%, transparent 100%); }
+  .more-block[open] > summary span::before { animation:none; opacity:0; }
+  @keyframes blade { 0% { left:-60%; } 28% { left:130%; } 100% { left:130%; } }
+  @media (prefers-reduced-motion: reduce) { .more-block > summary span::before { animation:none; opacity:0; } }
   @media (max-width:600px) {
     .wrap { padding:0 20px; }
     h1 { font-size:1.95rem; letter-spacing:-0.035em; }
