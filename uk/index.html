@@ -230,6 +230,13 @@
   .letter.rec img { width:100%; height:auto; border-radius:6px; box-shadow:0 2px 6px rgba(0,0,0,0.06),0 30px 70px rgba(0,0,0,0.18); }
   .letter.rec .more p { font-size:1.1rem; color:var(--ink-2); }
   #recommendation blockquote { font-size:clamp(1.4rem,2.6vw,1.9rem); }
+
+  .hm-ctas { display:flex; justify-content:center; gap:14px; flex-wrap:wrap; margin-top:26px; }
+  .hm-ctas .open-app { margin-top:0; width:360px; justify-content:flex-start; }
+  .hm-ctas .open-app .txt { flex:1; }
+  .open-app.tg { background:#229ED9; color:#fff; } .open-app.tg small { opacity:.92; }
+  .open-app .tgi { width:22px; height:22px; flex:none; }
+  @media (max-width:600px) { .hm-ctas .open-app { width:100%; } }
   @media (max-width:600px) {
     .wrap { padding:0 20px; }
     h1 { font-size:1.95rem; letter-spacing:-0.035em; }
@@ -435,7 +442,10 @@
 
   <section class="alt" id="heimdall"><div class="wrap">
     <div class="sec-head"><img class="mark" src="../heimdall-mark.png" alt="" width="64" height="64"><div class="kicker">Heimdall, волонтерський проєкт</div><h2>Безкоштовний трекер повітряних тривог і дронів для Києва.</h2><p>Я спроєктував і створив Heimdall, щоб дати людям додаткову обізнаність про те, що повідомляють у небі над ними, щоб вони раніше йшли в укриття, і, можливо, врятувати життя. Волонтерська робота: безкоштовно, без стеження, відкритий код. Щоночі в Києві, зокрема мобільні вогневі групи ППО.</p>
-      <a class="open-app" href="https://heimdall.com.ua/m"><span class="dot"></span><span><b>Відкрити Heimdall</b><small>heimdall.com.ua, безкоштовно, працює на будь-якому телефоні</small></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a><a class="tg-app" href="https://t.me/Heimdall07300_bot"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.8 19c-.2 1-.8 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.7-7.9c.4-.3-.1-.5-.6-.2L6.7 12.9 2.1 11.5c-1-.3-1-1 .2-1.5L20.6 3c.8-.3 1.6.2 1.3 1.3z"/></svg>Telegram-бот @Heimdall07300_bot</a></div>
+      <div class="hm-ctas">
+        <a class="open-app" href="https://heimdall.com.ua/m"><span class="dot"></span><span class="txt"><b>Відкрити застосунок у браузері</b><small>heimdall.com.ua · без встановлення, будь-який телефон</small></span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+        <a class="open-app tg" href="https://t.me/Heimdall07300_bot"><svg class="tgi" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.8 19c-.2 1-.8 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.7-7.9c.4-.3-.1-.5-.6-.2L6.7 12.9 2.1 11.5c-1-.3-1-1 .2-1.5L20.6 3c.8-.3 1.6.2 1.3 1.3z"/></svg><span class="txt"><b>Telegram-бот @Heimdall07300_bot</b><small>Доповнює застосунок, просто в Telegram</small></span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
+      </div></div>
     <div class="hm-shots">
       <div class="hm-main"><figure class="shot dark"><div class="frame"><i></i><i></i><i></i></div><img src="../heimdall.webp" alt="Наживо під час тривоги, 6 листопада 2026, 20:50. Кожна іконка це ударний дрон, повернутий за курсом, з лічильником, коли летять групою. Ліворуч: кожна ціль з відстанню від вашої мітки. Праворуч: публічні дописи, з яких вони взялися." width="1600" height="1000" loading="lazy"><figcaption>Наживо під час тривоги, 6 листопада 2026, 20:50. Кожна іконка це ударний дрон, повернутий за курсом, з лічильником, коли летять групою. Ліворуч: кожна ціль з відстанню від вашої мітки. Праворуч: публічні дописи, з яких вони взялися.</figcaption></figure></div>
       <div class="hm-phone"><figure class="phone"><img src="../heimdall-mobile.webp" alt="На телефоні: ударний дрон на північ від Києва, кільця 15, 30 і 60 км довкола мітки." width="520" height="1058" loading="lazy"><figcaption>На телефоні: ударний дрон на північ від Києва, кільця 15, 30 і 60 км довкола мітки.</figcaption></figure></div>
