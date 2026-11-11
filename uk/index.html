@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="google" content="notranslate">
-<title>Гійом Блан</title>
-<meta name="description" content="Гійом Блан, інженер підтримки в Києві. Інструменти за спиною команди підтримки з великим потоком звернень: детермінований сервіс автовідповідей з дев'ятьма запобіжниками, робоче місце агента, набір сканерів і Heimdall, трекер повітряних тривог у реальному часі.">
-<meta property="og:title" content="Гійом Блан">
-<meta property="og:description" content="Гійом Блан, інженер підтримки в Києві. Інструменти за спиною команди підтримки з великим потоком звернень: детермінований сервіс автовідповідей з дев'ятьма запобіжниками, робоче місце агента, набір сканерів і Heimdall, трекер повітряних тривог у реальному часі.">
+<title>Гійом Блан, автоматизація та AI-операції</title>
+<meta name="description" content="Гійом Блан, автоматизація та AI-операції, Київ. Перетворюю ручні операції на автоматизовані системи: детермінований сервіс автовідповідей з дев'ятьма запобіжниками, робоче місце агента, сканери з локальною моделлю комп'ютерного зору і Heimdall, трекер повітряних тривог у реальному часі.">
+<meta property="og:title" content="Гійом Блан, автоматизація та AI-операції">
+<meta property="og:description" content="Гійом Блан, автоматизація та AI-операції, Київ. Перетворюю ручні операції на автоматизовані системи: детермінований сервіс автовідповідей з дев'ятьма запобіжниками, робоче місце агента, сканери з локальною моделлю комп'ютерного зору і Heimdall, трекер повітряних тривог у реальному часі.">
 <meta property="og:url" content="https://dread92.github.io/uk/">
 <meta property="og:image" content="https://dread92.github.io/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
@@ -297,6 +297,31 @@
   @keyframes cuein { to { opacity:.8; } }
   @keyframes cuebob { 0%,100% { transform:translateY(0); opacity:.5; } 50% { transform:translateY(6px); opacity:1; } }
   @media (prefers-reduced-motion: reduce) { .m-cue, .m-cue svg { animation:none; opacity:.8; } }
+  /* availability + numbers */
+  .avail { display:inline-flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:6px 10px; margin:22px auto 0; padding:8px 16px; border-radius:999px; background:var(--green-soft); color:var(--green); font-size:0.9rem; }
+  .avail b { font-weight:600; } .avail .sub { color:var(--ink-2); }
+  .avail .dot { width:8px; height:8px; border-radius:50%; background:var(--green); box-shadow:0 0 0 0 currentColor; animation:pulse 2.4s infinite; }
+  @keyframes pulse { 0% { box-shadow:0 0 0 0 rgba(29,122,70,.45); } 70% { box-shadow:0 0 0 9px rgba(29,122,70,0); } 100% { box-shadow:0 0 0 0 rgba(29,122,70,0); } }
+  .hero .avail { opacity:0; animation:rise .9s cubic-bezier(.2,.7,.2,1) .32s forwards; }
+  .nums { display:grid; grid-template-columns:repeat(4,1fr); gap:0; max-width:900px; margin:48px auto 0; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .num { padding:22px 14px; text-align:center; } .num + .num { border-left:1px solid var(--line); }
+  .num b { display:block; font-size:2.1rem; font-weight:600; letter-spacing:-0.03em; font-variant-numeric:tabular-nums; }
+  .num span { display:block; margin-top:4px; color:var(--ink-3); font-size:0.82rem; line-height:1.35; }
+  /* code blocks */
+  .code { margin:40px 0 0; text-align:left; }
+  .code h3 { margin-bottom:14px; }
+  .code-box { background:#161618; border-radius:14px; overflow:hidden; box-shadow:0 18px 40px -24px rgba(0,0,0,.45); }
+  :root[data-theme="dark"] .code-box { border:1px solid var(--line); }
+  .code-h { display:flex; align-items:center; gap:12px; padding:10px 16px; background:#232326; font-family:ui-monospace,"SF Mono",Menlo,monospace; font-size:0.76rem; color:#a1a1a6; }
+  .code-h .dots { display:inline-flex; gap:6px; } .code-h .dots i { width:10px; height:10px; border-radius:50%; background:#48484a; }
+  .code-h .fn { color:#e5e5ea; } .code-h .tag { margin-left:auto; padding:2px 9px; border-radius:999px; background:#34343a; color:#d2d2d7; font-family:inherit; white-space:nowrap; }
+  .code pre { margin:0; padding:18px 20px 20px; overflow-x:auto; font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace; font-size:0.8rem; line-height:1.7; color:#e5e5ea; tab-size:2; letter-spacing:0; }
+  .code code { font:inherit; }
+  .code .c { color:#8fd19e; font-style:italic; } .code .s { color:#ffb86b; } .code .k { color:#7cc0ff; } .code .n { color:#d4a8ff; } .code .f { color:#f2e394; }
+  .code figcaption { margin-top:12px; color:var(--ink-3); font-size:0.88rem; max-width:760px; }
+  @media (max-width:820px) { .nums { grid-template-columns:repeat(2,1fr); } .num:nth-child(3) { border-left:0; } .num:nth-child(n+3) { border-top:1px solid var(--line); } .code pre { font-size:0.7rem; padding:14px; } .avail { font-size:0.82rem; border-radius:16px; } }
+  @media (max-width:600px) { .nums { margin-top:8px; } .nums + .glance-h { margin-top:30px; } .num b { font-size:1.7rem; } .hero-top .avail { margin-top:26px; } }
+  @media (prefers-reduced-motion: reduce) { .avail .dot { animation:none; } .hero .avail { opacity:1; animation:none; } }
 </style>
 </head>
 <body>
@@ -311,15 +336,17 @@
 <main id="top">
   <section class="hero"><div class="wrap">
     <div class="hero-top">
-    <h1><span class="l-full">Інженер підтримки.<br>Я створюю інструменти, на яких працює команда підтримки.</span><span class="l-short">Інженер підтримки.<br>Я створюю інструменти.</span></h1>
-    <p class="lede"><span class="l-full">Десять років лагоджу речі для людей: від ПК і невеликих мереж до черги Zendesk з великим потоком звернень, де я створив більшість автоматизації команди. Поза роботою: Heimdall, волонтерський трекер повітряних тривог, який кияни відкривають щоночі.</span><span class="l-short">Десять років лагоджу речі для людей. Останнім часом автоматизація для команди підтримки з великим потоком звернень.</span></p>
-    <ul class="skills" aria-label="Ключові навички"><li>Автоматизація підтримки</li><li>Zendesk API</li><li>Node.js</li><li>Python</li><li>LLM і комп'ютерний зір</li><li>Userscripts</li><li>Дашборди</li><li>Реагування на інциденти</li><li>Linux</li></ul>
+    <h1><span class="l-full">Перетворюю ручні операції<br>на автоматизовані системи.</span><span class="l-short">Автоматизую<br>операції.</span></h1>
+    <p class="lede"><span class="l-full">Знаходжу рутинні й ризиковані частини процесу та замінюю їх інструментами, які безпечно залишати без нагляду. Останнє: автоматизація для команди підтримки з великим потоком звернень. Поза роботою: Heimdall, волонтерський трекер повітряних тривог, який кияни відкривають щоночі.</span><span class="l-short">Замінюю рутинну й ризиковану ручну роботу інструментами, які безпечно залишати без нагляду.</span></p>
+    <ul class="skills" aria-label="Ключові навички"><li>Автоматизація процесів</li><li>REST API</li><li>Node.js</li><li>Python</li><li>LLM і комп'ютерний зір</li><li>Адміністрування Zendesk</li><li>Дашборди</li><li>Реагування на інциденти</li><li>Linux</li></ul>
+    <p class="avail"><span class="dot"></span><b>Доступний з грудня 2026</b><span class="sub">Віддалено або Київ · Автоматизація, AI-операції, технічні операції</span></p>
     <div class="cta">
       <a class="pill" href="../Guillaume_Blanc_CV.pdf">Завантажити резюме</a>
       <span class="cta-links"><a class="textlink" href="https://www.linkedin.com/in/guillaume-blanc-820bb528a">LinkedIn</a><a class="textlink" href="https://github.com/Dread92">GitHub</a><a class="textlink" href="mailto:guillaume.blanc92@hotmail.fr">Email</a></span>
     </div>
     <a class="m-cue" href="#glance" aria-label="Гортайте, щоб побачити роботи"><span>Роботи</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
     </div>
+    <div class="nums"><div class="num"><b>1 037</b><span>тікетів опрацював мій сервіс автовідповідей</span></div><div class="num"><b>0</b><span>інцидентів чи відкатів від запуску</span></div><div class="num"><b>8</b><span>внутрішніх інструментів, створених для команди</span></div><div class="num"><b>96</b><span>пристроїв відкривають Heimdall у звичайний день</span></div></div>
     <h2 class="glance-h" id="glance">Роботи з першого погляду</h2>
     <div class="glance"><a class="gcard" href="#autoreply"><span class="gimg"><img src="../autoreply-sm.webp" alt="" width="640" height="400" loading="eager"></span><b>Сервіс автовідповідей</b><span>Замінив платний Zapier. 1 037 тікетів, нуль інцидентів.</span></a><a class="gcard" href="#desk"><span class="gimg"><img src="../desk-sm.webp" alt="" width="640" height="400" loading="eager"></span><b>Support Desk</b><span>Робоче місце агента, яке розробка вбудувала нативно.</span></a><a class="gcard" href="#scanners"><span class="gimg"><img src="../scanner-sm.webp" alt="" width="640" height="400" loading="eager"></span><b>Зір і сканери</b><span>Комп'ютерний зір на скриншотах користувачів для виявлення трендів.</span></a><a class="gcard" href="#heimdall"><span class="gimg"><img src="../heimdall-sm.webp" alt="" width="640" height="400" loading="eager"></span><b>Heimdall</b><span>Безкоштовний трекер тривог для Києва, ним користуються групи ППО.</span></a></div>
     <a class="scroll-cue" href="#autoreply" aria-label="Гортайте, щоб побачити роботи"><span>Гортайте, щоб побачити роботи</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></a>
@@ -396,6 +423,40 @@
 <span class="k">canary</span> incidents_born_last_2h=0  <span class="ok">ok</span>
 <span class="dim">journal: actions.jsonl +2</span></div><p class="muted" style="margin-top:16px;font-size:0.95rem">У тій самій теці: аудитор у холостому режимі, що застосовує той самий класифікатор до всього беклогу без жодного запису, відновлюваний виконавець для опрацювання старих тікетів і разовий фоловап для застарілих звернень. Ті самі правила, той самий журнал, той самий відкат.</p></div>
       </div>
+      <figure class="code"><h3>Запобіжники в коді</h3><div class="code-box"><div class="code-h"><span class="dots"><i></i><i></i><i></i></span><span class="fn">auto-reply.js</span><span class="tag">Спрощений приклад</span></div><pre><code><span class="c">// One pass over the queue. Every check below exists because of a real incident.</span>
+<span class="k">async</span> <span class="k">function</span> <span class="f">pass</span>(&#123; live &#125;) &#123;
+  <span class="c">// Kill switch: a file named STOP next to the script halts every write.</span>
+  <span class="k">if</span> (fs.<span class="f">existsSync</span>(<span class="s">'STOP'</span>)) <span class="k">return</span> <span class="f">log</span>(<span class="s">'stopped by kill switch'</span>);
+
+  <span class="k">for</span> (<span class="k">const</span> ticket <span class="k">of</span> <span class="k">await</span> <span class="f">candidates</span>()) &#123;     <span class="c">// new, unanswered, not too old</span>
+    <span class="k">const</span> cat = <span class="f">classify</span>(ticket);                <span class="c">// written rules, same input gives same output</span>
+    <span class="k">if</span> (cat === <span class="s">'none'</span>) &#123; <span class="k">await</span> <span class="f">release</span>(ticket); <span class="k">continue</span>; &#125;
+
+    <span class="c">// Never trust a label. A punitive reply needs a positive signal</span>
+    <span class="c">// from the backend, not just a tag or a ticket type.</span>
+    <span class="k">if</span> (cat === <span class="s">'fraud'</span> &amp;&amp; !(<span class="k">await</span> <span class="f">backendConfirmsBlock</span>(ticket))) &#123;
+      <span class="k">await</span> <span class="f">release</span>(ticket);                     <span class="c">// a person decides instead</span>
+      <span class="k">continue</span>;
+    &#125;
+
+    <span class="c">// Circuit breaker: hard caps per hour, per day and for fraud.</span>
+    <span class="c">// Tripping one pauses all writes until a human resumes on purpose.</span>
+    <span class="k">if</span> (!breaker.<span class="f">allow</span>(cat)) &#123; <span class="k">await</span> <span class="f">alert</span>(<span class="s">'breaker tripped'</span>); <span class="k">return</span>; &#125;
+
+    <span class="c">// Every action carries the run tag, so one command can undo a whole run.</span>
+    journal.<span class="f">append</span>(&#123; run: RUN_ID, ticket: ticket.id, cat, at: Date.<span class="f">now</span>() &#125;);
+    <span class="k">if</span> (live) <span class="k">await</span> <span class="f">replyAndSolve</span>(ticket, cat);  <span class="c">// shadow mode stops before this line</span>
+  &#125;
+&#125;
+
+<span class="k">async</span> <span class="k">function</span> <span class="f">backendConfirmsBlock</span>(ticket) &#123;
+  <span class="k">try</span> &#123;
+    <span class="k">const</span> user = <span class="k">await</span> backend.<span class="f">lookup</span>(ticket.requester);
+    <span class="k">return</span> user.blocked === <span class="k">true</span> &amp;&amp; user.reasons.length &gt; <span class="n">0</span>;
+  &#125; <span class="k">catch</span> &#123;
+    <span class="k">return</span> <span class="k">false</span>;  <span class="c">// fail closed: backend down or slow means "not confirmed"</span>
+  &#125;
+&#125;</code></pre></div><figcaption>Спрощений приклад, написаний для цієї сторінки, щоб показати порядок перевірок. Робочий код працює на внутрішніх системах і не є публічним.</figcaption></figure>
     </div></details>
   </div></section>
 
@@ -534,6 +595,36 @@
           <p style="margin-top:22px"><a class="textlink" href="https://github.com/Dread92/Heimdall-map">Код на GitHub</a><br><a class="textlink" href="https://heimdall.com.ua/m">Тактична карта наживо</a><br><a class="textlink" href="https://t.me/Heimdall07300_bot">Telegram bot: @Heimdall07300_bot</a></p>
         </div>
       </div>
+      <figure class="code"><h3>З вихідного коду</h3><div class="code-box"><div class="code-h"><span class="dots"><i></i><i></i><i></i></span><span class="fn">app/server.py</span><span class="tag">Справжній код, скорочено</span></div><pre><code><span class="c"># _chain_and_prune(): decide which reported targets are still shown, and how.</span>
+<span class="k">for</span> m <span class="k">in</span> ms:
+    tp = <span class="f">parse_iso</span>(m.<span class="f">get</span>(<span class="s">"pos_ts"</span>) <span class="k">or</span> m[<span class="s">"ts"</span>])
+    age = (now - tp).<span class="f">total_seconds</span>() / <span class="n">60</span> <span class="k">if</span> tp <span class="k">else</span> <span class="n">0</span>
+
+    <span class="c"># A missile is not a drone and must not be aged like one. A Shahed does</span>
+    <span class="c"># ~3 km a minute, so a five-minute-old dot is still worth something. A</span>
+    <span class="c"># cruise missile does ~13, a ballistic one ~35: a position two minutes old</span>
+    <span class="c"># is already tens of kilometres wrong, and a grey dot left on the map would</span>
+    <span class="c"># be a lie with a precise pin in it. So missiles keep no "stale" flag at</span>
+    <span class="c"># all: the client turns them into a growing circle of where they could now</span>
+    <span class="c"># be, and they are dropped sooner.</span>
+    <span class="k">if</span> <span class="s">"missile"</span> <span class="k">in</span> (m.<span class="f">get</span>(<span class="s">"type"</span>) <span class="k">or</span> <span class="s">""</span>):
+        <span class="k">if</span> age &gt; MISSILE_TTL_MIN:
+            <span class="k">continue</span>
+        m[<span class="s">"fast"</span>] = <span class="k">True</span>
+        keep.<span class="f">append</span>(m)
+        <span class="k">continue</span>
+
+    <span class="c"># ...</span>
+
+    <span class="k">if</span> age &gt; st_min:
+        <span class="c"># An unspecified threat says where, not what. It is a loud red sign</span>
+        <span class="c"># while it is fresh, and then it is simply gone: no grey ghost fading</span>
+        <span class="c"># for ten more minutes, because nobody ever said what it was.</span>
+        <span class="k">if</span> m.<span class="f">get</span>(<span class="s">"type"</span>) == <span class="s">"unknown"</span>:
+            <span class="k">continue</span>
+        <span class="k">if</span> age &gt; (REGIONAL_GONE_MIN <span class="k">if</span> reg <span class="k">else</span> <span class="f">max</span>(stale * <span class="n">3</span>, <span class="n">15</span>)):
+            <span class="k">continue</span>                      <span class="c"># nothing for 15 min: gone</span>
+        m[<span class="s">"stale"</span>] = <span class="f">round</span>(age)           <span class="c"># kept as "? location not updated"</span></code></pre></div><figcaption>Узято з відкритого репозиторію та скорочено, разом із коментарями. Правило, яке він реалізує: застаріла позиція ніколи не показується як актуальна. <a class="textlink" href="https://github.com/Dread92/Heimdall-map/blob/main/app/server.py">Відкрити файл на GitHub</a></figcaption></figure>
     </div></details>
   </div></section>
 
@@ -556,7 +647,7 @@
   </div></section>
 
   <section id="about"><div class="wrap about">
-    <div><h2>Про мене</h2><p style="margin-top:16px">Я француз, живу в Києві, і десять років лагоджу речі для людей: спершу ПК і невеликі мережі для бізнесу, потім два роки підтримки другої лінії на мобільній платформі винагород, де зрештою створив більшість інструментів команди. До ІТ: три роки у французькій жандармерії як оперативник, де навчився лишатися спокійним і діяти за процедурою, коли це важливо.</p><p>Мені подобаються задачі, розв'язком яких є інструмент, що команда продовжує використовувати, і я не довіряю автоматизації, яку не можна відкотити. Працюю англійською та французькою й відкритий до віддалених ролей у технічній підтримці, інженерії підтримки, операціях підтримки та автоматизації.</p><p style="margin-top:22px"><a class="pill" href="../Guillaume_Blanc_CV.pdf">Завантажити резюме</a></p></div>
+    <div><h2>Про мене</h2><p style="margin-top:16px">Я француз, живу в Києві, і десять років лагоджу речі для людей: спершу ПК і невеликі мережі для бізнесу, потім два роки підтримки другої лінії на мобільній платформі винагород, де зрештою створив більшість інструментів команди. До ІТ: три роки у французькій жандармерії як оперативник, де навчився лишатися спокійним і діяти за процедурою, коли це важливо.</p><p>Мені подобаються задачі, розв'язком яких є інструмент, що команда продовжує використовувати, і я не довіряю автоматизації, яку не можна відкотити. Працюю англійською та французькою. Доступний з грудня 2026 і відкритий до ролей в автоматизації, AI-операціях, технічних операціях та інтеграціях, віддалено або в Києві.</p><p style="margin-top:22px"><a class="pill" href="../Guillaume_Blanc_CV.pdf">Завантажити резюме</a></p></div>
     <ul class="timeline"><li><b>Technical Support Specialist і автоматизація процесів, Gamelight</b><span>Вересень 2024 до грудня 2026, віддалено. У серпні 2026 перейняв операційний обсяг тімліда.</span></li><li><b>Heimdall, автор</b><span>2026, відкритий код, щоденне використання в Києві.</span></li><li><b>Провідний розробник, FUSA</b><span>З 2022 дотепер. Громадська організація підтримки українських захисників.</span></li><li><b>Комп'ютерний технік, LDLC</b><span>2019 до 2022, Ліон. Індивідуальні збірки, діагностика, віддалена підтримка.</span></li><li><b>Жандарм, Gendarmerie nationale</b><span>2015 до 2018. Оперативне реагування, кваліфікація APJA.</span></li><li><b>Веброзробник та інтегратор, OpenClassrooms</b><span>2023. Державно зареєстрована професійна сертифікація, RNCP рівень 5.</span></li></ul>
   </div></section>
 </main>
@@ -586,7 +677,7 @@
   window.addEventListener('scroll',function(){ nav.classList.toggle('scrolled', window.scrollY>8); },{passive:true});
   if(!('IntersectionObserver' in window) || reduce) return;
   // mark elements to reveal
-  var sel='.shot, .phone, .hm-p2, .open-app, .sec-head, .panel, .tool, .guardrails li, .checks li, .stat, .stats-note, .quote, .letter > *, .kyiv p, .about > *, .timeline li, .log, .muted';
+  var sel='.code, .shot, .phone, .hm-p2, .open-app, .sec-head, .panel, .tool, .guardrails li, .checks li, .stat, .stats-note, .quote, .letter > *, .kyiv p, .about > *, .timeline li, .log, .muted';
   document.querySelectorAll(sel).forEach(function(el){ if(!el.closest('.hero')) el.classList.add(el.matches('.panel,.tool,.stat,.letter > *,.shot,.phone')?'rv-scale':'rv'); });
   // stagger siblings
   document.querySelectorAll('.tools, .guardrails, .checks, .stats, .timeline').forEach(function(p){
