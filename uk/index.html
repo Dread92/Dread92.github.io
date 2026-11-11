@@ -324,6 +324,39 @@
   @media (max-width:820px) { .nums { grid-template-columns:repeat(2,1fr); } .num:nth-child(3) { border-left:0; } .num:nth-child(n+3) { border-top:1px solid var(--line); } .code pre { font-size:0.7rem; padding:14px; } .avail { font-size:0.82rem; border-radius:16px; } }
   @media (max-width:600px) { .nums { margin-top:8px; } .nums + .glance-h { margin-top:30px; } .num b { font-size:1.7rem; } .hero-top .avail { margin-top:26px; } }
   @media (prefers-reduced-motion: reduce) { .avail .dot { animation:none; } .hero .avail { opacity:1; animation:none; } }
+  /* Heimdall showcase */
+  .hm-wide { max-width:1040px; margin:0 auto; }
+  .hm-trio-h { text-align:center; margin:64px 0 28px; font-size:1.5rem; letter-spacing:-0.02em; }
+  .hm-trio { display:grid; grid-template-columns:repeat(3,1fr); gap:36px; max-width:920px; margin:0 auto 64px; align-items:start; }
+  .hm-f img { aspect-ratio:520/1058; object-fit:cover; object-position:top; }
+  .hm-f figcaption { text-align:left; margin-top:16px; }
+  .hm-f figcaption b { display:block; color:var(--ink); font-size:1.02rem; margin-bottom:4px; }
+  .hm-f figcaption span { display:block; font-size:0.9rem; line-height:1.45; color:var(--ink-3); }
+  @media (max-width:820px) { .hm-trio { display:flex; gap:16px; overflow-x:auto; scroll-snap-type:x mandatory; margin:0 -20px 44px; padding:0 20px 8px; -webkit-overflow-scrolling:touch; } .hm-f { flex:0 0 68%; scroll-snap-align:center; } .hm-trio-h { margin:44px 0 20px; font-size:1.25rem; } }
+  /* Game: night band */
+  section.night { position:relative; overflow:hidden; color:#e8ecf7; background:radial-gradient(900px 520px at 82% -8%, #24376f 0%, rgba(36,55,111,0) 62%), linear-gradient(180deg,#080d22 0%,#0c1430 58%,#0f2019 100%); }
+  section.night::before { content:""; position:absolute; inset:0 0 45% 0; pointer-events:none; opacity:.7; background-image:radial-gradient(1.4px 1.4px at 8% 14%, #fff 50%, transparent 52%),radial-gradient(1px 1px at 19% 42%, #fff 50%, transparent 52%),radial-gradient(1.6px 1.6px at 31% 9%, #fff 50%, transparent 52%),radial-gradient(1px 1px at 44% 30%, #fff 50%, transparent 52%),radial-gradient(1.3px 1.3px at 58% 12%, #fff 50%, transparent 52%),radial-gradient(1px 1px at 67% 38%, #fff 50%, transparent 52%),radial-gradient(1.5px 1.5px at 76% 20%, #fff 50%, transparent 52%),radial-gradient(1px 1px at 88% 46%, #fff 50%, transparent 52%),radial-gradient(1.2px 1.2px at 95% 8%, #fff 50%, transparent 52%),radial-gradient(1px 1px at 3% 52%, #fff 50%, transparent 52%); }
+  section.night .wrap { position:relative; }
+  section.night h2 { color:#fff; } section.night .kicker { color:#f5c542; }
+  section.night .sec-head p { color:#b9c3dc; } section.night .meta { color:#8f9bbb; }
+  section.night .shot figcaption, section.night .phone-l figcaption { color:#8f9bbb; }
+  section.night .shot .frame { background:#1a2140; } section.night .shot .frame i { background:#3a4470; }
+  section.night .shot img, section.night .shot.vid video { box-shadow:0 30px 80px rgba(0,0,0,0.55), 0 0 0 1px rgba(255,255,255,0.06); }
+  section.night .shots2 { margin-top:26px; }
+  .gm-facts { display:flex; justify-content:center; flex-wrap:wrap; gap:10px 0; margin:34px auto 6px; }
+  .gm-facts div { padding:4px 30px; text-align:center; } .gm-facts div + div { border-left:1px solid rgba(255,255,255,0.14); }
+  .gm-facts b { display:block; font-size:2rem; font-weight:600; letter-spacing:-0.03em; color:#f5c542; font-variant-numeric:tabular-nums; }
+  .gm-facts span { display:block; font-size:0.84rem; color:#aab4cf; }
+  .gm-duo { display:grid; grid-template-columns:1.25fr 1fr; gap:40px; align-items:center; margin-top:44px; }
+  .phone-l { margin:0; } .phone-l img { display:block; width:100%; height:auto; border-radius:26px; border:7px solid #05070f; box-shadow:0 0 0 1px rgba(255,255,255,0.16), 0 30px 70px rgba(0,0,0,0.6); cursor:zoom-in; }
+  .phone-l figcaption { font-size:0.82rem; margin-top:12px; text-align:center; }
+  .gm-feats { list-style:none; display:grid; gap:12px; margin:0; padding:0; }
+  .gm-feats li { padding:16px 18px; border-radius:14px; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.10); }
+  .gm-feats b { display:block; color:#fff; font-size:1rem; margin-bottom:4px; } .gm-feats span { display:block; color:#b9c3dc; font-size:0.92rem; line-height:1.45; }
+  section.night .more-block > summary span { color:#e8ecf7; border-color:rgba(255,255,255,0.28); }
+  section.night .more-block > summary:hover span { background:rgba(255,255,255,0.08); }
+  section.night .more-in p { color:#c6cee2; }
+  @media (max-width:820px) { .gm-duo { grid-template-columns:1fr; gap:26px; } .gm-facts div { padding:4px 16px; } .gm-facts div + div { border-left:0; } .gm-facts b { font-size:1.5rem; } .gm-facts span { font-size:0.74rem; } }
 </style>
 </head>
 <body>
@@ -542,10 +575,9 @@
         <a class="open-app" href="https://heimdall.com.ua/m"><span class="dot"></span><span class="txt"><b>Відкрити застосунок у браузері</b><small>heimdall.com.ua · без встановлення, будь-який телефон</small></span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
         <a class="open-app tg" href="https://t.me/Heimdall07300_bot"><svg class="tgi" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.9 4.3 18.8 19c-.2 1-.8 1.3-1.7.8l-4.7-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.8 8.7-7.9c.4-.3-.1-.5-.6-.2L6.7 12.9 2.1 11.5c-1-.3-1-1 .2-1.5L20.6 3c.8-.3 1.6.2 1.3 1.3z"/></svg><span class="txt"><b>Telegram-бот @Heimdall07300_bot</b><small>Доповнює застосунок, просто в Telegram</small></span><svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg></a>
       </div></div>
-    <div class="hm-shots">
-      <div class="hm-main"><figure class="shot dark"><div class="frame"><i></i><i></i><i></i></div><img src="../heimdall.webp" alt="Наживо під час тривоги, 6 листопада 2026, 20:50. Кожна іконка це ударний дрон, повернутий за курсом, з лічильником, коли летять групою. Ліворуч: кожна ціль з відстанню від вашої мітки. Праворуч: публічні дописи, з яких вони взялися." width="1600" height="1000" loading="lazy"><figcaption>Наживо під час тривоги, 6 листопада 2026, 20:50. Кожна іконка це ударний дрон, повернутий за курсом, з лічильником, коли летять групою. Ліворуч: кожна ціль з відстанню від вашої мітки. Праворуч: публічні дописи, з яких вони взялися.</figcaption></figure></div>
-      <div class="hm-phone"><figure class="phone"><img src="../heimdall-mobile.webp" alt="На телефоні: ударний дрон на північ від Києва, кільця 15, 30 і 60 км довкола мітки." width="520" height="1058" loading="lazy"><figcaption>На телефоні: ударний дрон на північ від Києва, кільця 15, 30 і 60 км довкола мітки.</figcaption></figure></div>
-    </div>
+    <div class="hm-wide"><figure class="shot dark"><div class="frame"><i></i><i></i><i></i></div><img src="../heimdall.webp" alt="Наживо під час тривоги, 6 листопада 2026, 20:50. Кожна іконка це ударний дрон, повернутий за курсом, з лічильником, коли летять групою. Ліворуч: кожна ціль з відстанню від вашої мітки. Праворуч: публічні дописи, з яких вони взялися." width="1600" height="1000" loading="lazy"><figcaption>Наживо під час тривоги, 6 листопада 2026, 20:50. Кожна іконка це ударний дрон, повернутий за курсом, з лічильником, коли летять групою. Ліворуч: кожна ціль з відстанню від вашої мітки. Праворуч: публічні дописи, з яких вони взялися.</figcaption></figure></div>
+    <h3 class="hm-trio-h">На вашому телефоні, о третій ночі</h3>
+    <div class="hm-trio"><figure class="phone hm-f"><img src="../hm-calm.webp" alt="Тиха ніч. Один погляд: у радіусі 30 км від вашої точки нічого не повідомлено. І нагадування, що це не означає «безпечно». Вирішує сирена, а не екран." width="560" height="1212" loading="lazy"><figcaption><b>Тиха ніч</b><span>Один погляд: у радіусі 30 км від вашої точки нічого не повідомлено. І нагадування, що це не означає «безпечно». Вирішує сирена, а не екран.</span></figcaption></figure><figure class="phone hm-f"><img src="../heimdall-mobile.webp" alt="Під час тривоги. Повідомлені дрони й ракети з'являються на мапі з курсом, у кільцях 15, 30 і 60 км навколо вашої точки." width="520" height="1058" loading="lazy"><figcaption><b>Під час тривоги</b><span>Повідомлені дрони й ракети з'являються на мапі з курсом, у кільцях 15, 30 і 60 км навколо вашої точки.</span></figcaption></figure><figure class="phone hm-f"><img src="../hm-evidence-p.webp" alt="Торкніться позначки. Курс, давність, точність позиції, оригінальний допис і те, як прочитано кожну частину речення. Докази, а не здогадки." width="840" height="1709" loading="lazy"><figcaption><b>Торкніться позначки</b><span>Курс, давність, точність позиції, оригінальний допис і те, як прочитано кожну частину речення. Докази, а не здогадки.</span></figcaption></figure></div>
     <div class="stats"><div class="stat"><b>3 531</b><span>пристрої-дні за останні 30 днів</span></div><div class="stat"><b>4 809</b><span>відкриттів за останні 30 днів</span></div><div class="stat"><b>96</b><span>пристроїв у звичайний день</span></div></div>
     <p class="stats-note">Підраховано без відстеження будь-кого: щоденний хеш пристрою перегенеровується опівночі, тож ту саму людину не можна впізнати наступного дня. Дані з вбудованої панелі використання, 6 листопада 2026.</p>
     <details class="more-block"><summary><span>Під капотом</span></summary><div class="more-in">
@@ -590,7 +622,7 @@
           <text x="98" y="294" text-anchor="middle" class="small">a thousand phones in seconds,</text>
           <text x="98" y="308" text-anchor="middle" class="small">over kept-open connections</text>
           <path d="M300 224 H230 V279 H186" class="edge" marker-end="url(#ah)"/>
-        </svg><figcaption>Від публічного допису до позначки на карті, з фразою-джерелом в одному дотику.</figcaption></div><figure class="shot dark ev"><div class="frame"><i></i><i></i><i></i></div><img src="../heimdall-evidence.webp" alt="Торкніться дрона: курс, давність, точність позиції, оригінальний допис і як було прочитано кожну частину речення." width="840" height="1584" loading="lazy"><figcaption>Торкніться дрона: курс, давність, точність позиції, оригінальний допис і як було прочитано кожну частину речення.</figcaption></figure></div>
+        </svg><figcaption>Від публічного допису до позначки на карті, з фразою-джерелом в одному дотику.</figcaption></div></div>
         <div><ul class="checks"><li><b>Докази, а не здогадки.</b> Кожна позначка відкриває фразу-джерело, канал, час і рівень упевненості. Жодної екстрапольованої траєкторії, якщо ви її не ввімкнули, жодного вигаданого часу прибуття.</li><li><b>Застаріле ніколи не показується як активне.</b> Ціль без нового повідомлення сіріє через 5 хвилин і зникає через 15.</li><li><b>Запобіжні попередження.</b> Зльоти винищувачів і балістичні загрози піднімають банер до того, як щось помічено, і знімають його, щойно наступний допис скасовує загрозу.</li><li><b>Повтор та історія.</b> Будь-яка з останніх семи ночей відтворюється як погодний радар; вибухи та збиття за 72 години.</li><li><b>Керування з дашборду.</b> Додати чи вимкнути канал без деплою, нові канали починають у режимі випробування, повідомлення адміністратора всім читачам трьома мовами.</li><li><b>Працює будь-де.</b> Лише стандартна бібліотека, один Dockerfile, деплой на Fly.io, демо-режим із фіктивними тривогами для розробки.</li></ul>
           <p style="margin-top:22px"><a class="textlink" href="https://github.com/Dread92/Heimdall-map">Код на GitHub</a><br><a class="textlink" href="https://heimdall.com.ua/m">Тактична карта наживо</a><br><a class="textlink" href="https://t.me/Heimdall07300_bot">Telegram bot: @Heimdall07300_bot</a></p>
         </div>
@@ -628,12 +660,17 @@
     </div></details>
   </div></section>
 
-  <section id="game"><div class="wrap">
+  <section class="night" id="game"><div class="wrap">
     <div class="sec-head"><div class="kicker">Сайд-проєкт</div><h2>Ukraine Sky Defenders: гра про нічне небо Києва.</h2><p>Браузерна гра в жанрі оборони від хвиль: ви захищаєте невеликий будинок під Батьківщиною-Матір'ю, поки вночі летять шахеди, крилаті ракети, FPV-дрони й балістика. Працює на комп'ютері й телефоні, встановлюється, трьома мовами.</p><div class="meta"><span>JavaScript і Canvas, без фреймворків</span><span>Firebase Hosting, Firestore, Auth</span><span>PWA, що встановлюється</span></div></div>
     <figure class="shot dark vid"><div class="frame"><i></i><i></i><i></i></div><video src="../game-loop.mp4" poster="../game-poster.webp" autoplay muted loop playsinline preload="metadata" width="960" height="540" aria-label="Справжній геймплей, хвиля 14: захисник рухається й збиває шахеди, а на допомогу виїжджає мобільна вогнева група ППО."></video><figcaption>Справжній геймплей, хвиля 14: захисник рухається й збиває шахеди, а на допомогу виїжджає мобільна вогнева група ППО.</figcaption></figure>
-    <div class="shots2" style="margin-top:22px"><figure class="shot dark"><div class="frame"><i></i><i></i><i></i></div><img src="../game-2.webp" alt="Хвиля 11: шахеди наближаються до будинку." width="1440" height="810" loading="lazy"><figcaption>Хвиля 11: шахеди наближаються до будинку.</figcaption></figure><figure class="shot dark"><div class="frame"><i></i><i></i><i></i></div><img src="../game-m.webp" alt="На телефоні, хвиля 10: ракетний залп, кнопки на верхніх панелях." width="1100" height="508" loading="lazy"><figcaption>На телефоні, хвиля 10: ракетний залп, кнопки на верхніх панелях.</figcaption></figure></div>
+    <div class="gm-facts"><div><b>24</b><span>ігрові захисники</span></div><div><b>10</b><span>типів ворогів</span></div><div><b>2</b><span>багатофазні боси</span></div><div><b>4</b><span>рівні складності</span></div><div><b>3</b><span>мови</span></div></div>
+    <div class="shots2"><figure class="shot dark"><div class="frame"><i></i><i></i><i></i></div><img src="../game-boss.webp" alt="Хвиля 10, фаза боса: попередження про балістику, поки наближаються літаки й залп ракет." width="1440" height="810" loading="lazy"><figcaption>Хвиля 10, фаза боса: попередження про балістику, поки наближаються літаки й залп ракет.</figcaption></figure><figure class="shot dark"><div class="frame"><i></i><i></i><i></i></div><img src="../game-wave8.webp" alt="Хвиля 8: шахеди зі щитами, FPV-дрони й ракета в одному небі." width="1440" height="810" loading="lazy"><figcaption>Хвиля 8: шахеди зі щитами, FPV-дрони й ракета в одному небі.</figcaption></figure></div>
+    <div class="gm-duo">
+      <figure class="phone-l"><img src="../game-phone.webp" alt="На телефоні, хвиля 9: керування зміщене до країв, тож обидва великі пальці вільні." width="1200" height="555" loading="lazy"><figcaption>На телефоні, хвиля 9: керування зміщене до країв, тож обидва великі пальці вільні.</figcaption></figure>
+      <ul class="gm-feats"><li><b>Вороги, що змушують вирішувати</b><span>Шахед зі щитом, який треба обійти, носій, що розпадається на три дрони, глушилка, що вимикає ваші турелі.</span></li><li><b>Інтерфейс, що йде за руками</b><span>Макет підлаштовується під тип введення, а не під розмір екрана: на телефоні обидва великі пальці вільні, з мишею звичний макет.</span></li><li><b>Захист від збоїв для реальних телефонів</b><span>Коли гравці повідомили про випадкові зависання, я додав захист, який тримає гру запущеною й записує першу помилку з контекстом.</span></li></ul>
+    </div>
     <details class="more-block"><summary><span>Як це зроблено</span></summary><div class="more-in narrow">
-      <p>Уся гра постачається як один самодостатній HTML-файл: близько 3 600 рядків JavaScript на циклі Canvas 2D, із вбудованими спрайтами й аудіо, версіонованим service worker для офлайн-гри та Firebase для таблиці лідерів, акаунтів і збережень у хмарі. 24 захисники зі своєю зброєю й ультимейтами, 10 типів ворогів, 2 багатофазні боси, 4 рівні складності, повністю українською, французькою та англійською.</p><p>Деталі, які мені подобаються: інтерфейс підлаштовується під тип введення, а не під розмір екрана, тож на телефоні обидва великі пальці вільні, а з мишею звичний макет. Вороги змушують ухвалювати рішення: шахед зі щитом, який треба обійти, носій, що розпадається на три дрони, глушилка, що вимикає ваші турелі. Коли гравці повідомили про випадкові зависання, я додав захист від збоїв, який тримає гру запущеною й записує першу помилку з контекстом, що дало змогу збирати діагностику з реальних телефонів без дебагера.</p><p>Концепція, геймдизайн, баланс, арт-дирекція, тестування й налаштування безпеки Firebase на мені; код писався під моїм керівництвом через невеликі самоперевірні патч-скрипти, кожен із перевіркою синтаксису перед деплоєм. Добра вправа з керування інструментами ШІ із запобіжниками.</p>
+      <p>Уся гра постачається як один самодостатній HTML-файл: близько 3 600 рядків JavaScript на циклі Canvas 2D, із вбудованими спрайтами й аудіо, версіонованим service worker для офлайн-гри та Firebase для таблиці лідерів, акаунтів і збережень у хмарі. 24 захисники зі своєю зброєю й ультимейтами, 10 типів ворогів, 2 багатофазні боси, 4 рівні складності, повністю українською, французькою та англійською.</p><p>Концепція, геймдизайн, баланс, арт-дирекція, тестування й налаштування безпеки Firebase на мені; код писався під моїм керівництвом через невеликі самоперевірні патч-скрипти, кожен із перевіркою синтаксису перед деплоєм. Добра вправа з керування інструментами ШІ із запобіжниками.</p>
     </div></details>
   </div></section>
 
@@ -661,7 +698,7 @@
   var lb=document.querySelector('.lb'), li=lb.querySelector('img'), lc=lb.querySelector('.lb-cap'), last=null;
   function open(img){ last=img; li.src=img.currentSrc||img.src; li.alt=img.alt; var f=img.closest('figure'); var c=f&&f.querySelector('figcaption'); lc.textContent=c?c.textContent:''; lb.hidden=false; document.documentElement.classList.add('lb-open'); requestAnimationFrame(function(){ lb.classList.add('on'); }); lb.querySelector('.lb-x').focus(); }
   function close(){ lb.classList.remove('on'); document.documentElement.classList.remove('lb-open'); setTimeout(function(){ lb.hidden=true; li.src=''; if(last) last.focus(); },200); }
-  document.querySelectorAll('.shot img, .phone img').forEach(function(img){ img.tabIndex=0; img.setAttribute('role','button'); img.addEventListener('click',function(){ open(img); }); img.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(img); } }); });
+  document.querySelectorAll('.shot img, .phone img, .phone-l img').forEach(function(img){ img.tabIndex=0; img.setAttribute('role','button'); img.addEventListener('click',function(){ open(img); }); img.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); open(img); } }); });
   lb.addEventListener('click',function(e){ if(e.target!==li) close(); });
   li.addEventListener('click',close);
   document.addEventListener('keydown',function(e){ if(e.key==='Escape' && !lb.hidden) close(); });
@@ -677,7 +714,7 @@
   window.addEventListener('scroll',function(){ nav.classList.toggle('scrolled', window.scrollY>8); },{passive:true});
   if(!('IntersectionObserver' in window) || reduce) return;
   // mark elements to reveal
-  var sel='.code, .shot, .phone, .hm-p2, .open-app, .sec-head, .panel, .tool, .guardrails li, .checks li, .stat, .stats-note, .quote, .letter > *, .kyiv p, .about > *, .timeline li, .log, .muted';
+  var sel='.code, .shot, .phone, .phone-l, .gm-facts, .gm-feats li, .hm-trio-h, .hm-p2, .open-app, .sec-head, .panel, .tool, .guardrails li, .checks li, .stat, .stats-note, .quote, .letter > *, .kyiv p, .about > *, .timeline li, .log, .muted';
   document.querySelectorAll(sel).forEach(function(el){ if(!el.closest('.hero')) el.classList.add(el.matches('.panel,.tool,.stat,.letter > *,.shot,.phone')?'rv-scale':'rv'); });
   // stagger siblings
   document.querySelectorAll('.tools, .guardrails, .checks, .stats, .timeline').forEach(function(p){
